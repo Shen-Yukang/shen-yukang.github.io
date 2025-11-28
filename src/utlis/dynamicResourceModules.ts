@@ -8,7 +8,7 @@ const videoModules = import.meta.glob('../assets/videos/*.mp4', {
   import: 'default',
 }) as Record<string, string>
 
-const docModules = import.meta.glob('../assets/videos/*.pdf', {
+const docModules = import.meta.glob('../assets/docs/*.pdf', {
   eager: true,
   import: 'default',
 }) as Record<string, string>

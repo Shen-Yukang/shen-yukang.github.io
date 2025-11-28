@@ -1,6 +1,9 @@
+import { getPDFUrlByKey } from '@/utlis/dynamicResourceModules'
 import './index.css'
 
 const HeroInroductionAcdemic = () =>{
+  console.log('PDF URL = ', getPDFUrlByKey("phD_CV_Yukang"));
+
 return (
       <header className="hero" >
         {/* 左侧头像 */}
@@ -32,7 +35,7 @@ return (
             <span>·</span>
             <a href="https://github.com/Shen-Yukang" target="_blank">GitHub</a>
             <span>·</span>
-            <a href="/phD_CV_Yukang.pdf" target="_blank" rel="noreferrer">
+            <a href={getPDFUrlByKey("phD_CV_Yukang")} target="_blank" rel="noreferrer">
             Full CV (PDF)
             </a>
           </div>

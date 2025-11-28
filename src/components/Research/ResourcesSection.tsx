@@ -1,6 +1,7 @@
 // components/research/ResourcesSection.tsx
 import type { MedicalAIProject } from '@/front_db/typing';
 import { SectionShell } from './SectionShell';
+import { getPDFUrlByKey } from '@/utlis/dynamicResourceModules';
 
 interface ResourcesSectionProps {
   project: MedicalAIProject;
@@ -29,6 +30,12 @@ export function ResourcesSection({ project }: ResourcesSectionProps) {
             Paper / Preprint (coming soon)
           </a>
         </li>
+        {/* hack 的，临时加的，后续有需求在优化 */}
+        <li>  
+          <a href={getPDFUrlByKey("Poster-GRM-1245")} target="_blank" rel="noreferrer" className="rounded-full border border-slate-200 px-3 py-1 text-slate-700 hover:border-sky-400 hover:text-sky-700">
+            C-day_Event_Poster
+          </a>
+        </li>
       </ul>
       <p className="text-xs text-slate-500">
         Contact:{' '}
@@ -40,6 +47,7 @@ export function ResourcesSection({ project }: ResourcesSectionProps) {
           {project.contact.email}
         </a>
       </p>
+
     </SectionShell>
   );
 }
