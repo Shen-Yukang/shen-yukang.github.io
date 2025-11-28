@@ -7,11 +7,11 @@ const medicalAIProject:MedicalAIProject = {
 
   summary: {
     problem:
-      "Real medical perception data are rare due to privacy restrictions, uneven lighting, limited patient diversity, and expensive expert labeling. These constraints limit the performance and generalizability of models designed for deltoid injection understanding.",
+      "Real deltoid-injection data are scarce, biased, and expensive to label, so current perception models struggle to generalize in clinics.",
     theme:
-      "We build a scalable Synthetic Data Engine that can generate, filter, and iterate on large volumes of anatomically valid training data, enabling synthetic-only or synthetic-first training. We further integrate an anthropometric, explainable framework for projecting safe intramuscular injection zones.",
+      "We build a synthetic-first data engine that mass-produces and filters anatomically valid deltoid scenes, plus an anthropometric model for safe intramuscular injection zones.",
     result:
-      "Synthetic-only training achieves ≥90% real-data AP, with MAPE ≤ 8% and dist% ≤ 10%. Mixed synthetic–real training further improves performance, and our anthropometric framework provides consistent, interpretable safety-zone guidance.",
+      "Synthetic-only models reach **≥90% real-data AP** with **MAPE ≤ 8%** and **dist% ≤ 10%**. Mixed synthetic–real training improves performance further while keeping safety zones consistent and interpretable.",
   },
 
   background: {
