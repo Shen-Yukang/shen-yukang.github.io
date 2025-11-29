@@ -10,17 +10,17 @@ const researchProjects: ResearchProject[] = [
         color: "",
       },
       {
-        text:"Synthetic Data Engine",
+        text: "Synthetic Data Engine",
         color: "",
       },
-       {
-        text:"HITL",
-      color: "",
+      {
+        text: "HITL",
+        color: "",
       },
       {
-        text:"KSU C-day finalist research - 2025Fall",
-         color: "#f5a142",
-         fontColor:"white"
+        text: "KSU C-day finalist research - 2025Fall",
+        color: "#f5a142",
+        fontColor: "white",
       },
     ],
     routeUrl: "/rp/synthetic_data_engine",
@@ -41,8 +41,8 @@ const researchProjects: ResearchProject[] = [
   {
     title: "VLA Safety for Embodied AI",
     tags: [
-       {
-        text:"Vision–Language–Action Systems", 
+      {
+        text: "Vision–Language–Action Models",
       },
     ],
     rp_id: "1112358",
@@ -53,16 +53,18 @@ const researchProjects: ResearchProject[] = [
     bullets: [
       "Investigates how synthetic data and uncertainty signals can guide safer policy behaviors.",
       "Connects perception quality to task-level safety constraints in injection and AR-assist settings.",
+      "Connects perception quality to task-level safety constraints in injection and AR-assist settings.",
+      "Explores cross-disciplinary, physics-informed spatial perception to achieve higher geometric precision and interpretable structure understanding.",
     ],
     media: {
       type: "image",
-      sourceKey: "overall_architecture",
-      alt: "Deltoid injection perception pipeline",
+      sourceKey: "",
+      alt: "Coming soon",
     },
   },
 ];
 
-const publications:Publication[] = [
+const publications: Publication[] = [
   {
     year: "2022",
     title:
@@ -73,13 +75,10 @@ const publications:Publication[] = [
     url: "https://arxiv.org/abs/2204.06192",
     media: {
       type: "image",
-      sourceKey: "overall_architecture",
+      sourceKey: "paper1",
       alt: "JCIN journal cover",
     },
   },
 ];
 
-export {   
-    publications,
-    researchProjects,
-}
+export { publications, researchProjects };
