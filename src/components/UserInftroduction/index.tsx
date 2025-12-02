@@ -46,7 +46,7 @@ const HeroInroductionAcdemic = () => {
             </span>{" "}
             in high-precision spatial perception, physics-informed sensing, and
             embodied intelligence for real-world medical and healthcare
-            applications. - "{new Date().toLocaleDateString()}"
+            applications. - "ongoing"
           </p>
         </p>
 

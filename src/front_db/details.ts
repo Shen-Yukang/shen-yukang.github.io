@@ -1,6 +1,6 @@
 import type { MedicalAIProject } from "./typing";
 
-const medicalAIProject:MedicalAIProject = {
+const medicalAIProject: MedicalAIProject = {
   title: "Synthetic-First Perception and Data Engine for Medical AI",
   subtitle:
     "Oriented research on high-precision spatial perception and data-centric pipelines for deltoid injection assistance and embodied medical intelligence.",
@@ -19,17 +19,20 @@ const medicalAIProject:MedicalAIProject = {
       "Deltoid intramuscular injection is a routine yet safety-critical clinical procedure. In busy clinics, inaccurate landmarking and cognitive overload can lead to misplaced injections and potential nerve damage. At the same time, privacy constraints and limited labeled data make it difficult to train robust vision models for this task.",
     challenges: [
       {
-        question: "Q1 · Can a scalable Synthetic Data Engine accelerate training for rare, privacy-restricted medical perception tasks? ",
+        question:
+          "Q1 · Can a scalable Synthetic Data Engine accelerate training for rare, privacy-restricted medical perception tasks? ",
         answer:
           "The deltoid region, arm posture, anatomical landmarks, and safe-zone boundaries in RGB or AR views.",
       },
       {
-        question: "Q2 · Can purely synthetic images achieve segmentation performance comparable to real-image training?",
+        question:
+          "Q2 · Can purely synthetic images achieve segmentation performance comparable to real-image training?",
         answer:
           "Injection images are constrained by medical privacy rules, uneven lighting, limited population coverage, and expensive expert annotation.",
       },
       {
-        question: "Q3 · How can we provide explainable, anatomically grounded guidance for safe intramuscular injection based on perception outputs?",
+        question:
+          "Q3 · How can we provide explainable, anatomically grounded guidance for safe intramuscular injection based on perception outputs?",
         answer:
           "Generic segmentation models lack domain-specific priors and provide no interpretable concept of safe injection zones or safety margins.",
       },
@@ -38,19 +41,22 @@ const medicalAIProject:MedicalAIProject = {
       {
         sourceKey: "bg_data_collection_issue1",
         alt: "Clinical data collection limitations",
-        caption: "Limited real injection data due to privacy and clinical workflow constraints."
+        caption:
+          "Limited real injection data due to privacy and clinical workflow constraints.",
       },
       {
         sourceKey: "bg_data_collection_issue2",
         alt: "Lighting and pose variation",
-        caption: "Inconsistent lighting, arm posture, and occlusions affect data quality."
+        caption:
+          "Inconsistent lighting, arm posture, and occlusions affect data quality.",
       },
       {
         sourceKey: "bg_data_labeling_issue",
         alt: "Annotation burden",
-        caption: "Expert labeling is costly and difficult to scale for medical datasets."
-      }
-    ]
+        caption:
+          "Expert labeling is costly and difficult to scale for medical datasets.",
+      },
+    ],
   },
 
   contributions: [
@@ -71,18 +77,20 @@ const medicalAIProject:MedicalAIProject = {
       {
         sourceKey: "overall_architecture",
         alt: "Clinical data collection limitations",
-        caption: "Limited real injection data due to privacy and clinical workflow constraints."
+        caption:
+          "Limited real injection data due to privacy and clinical workflow constraints.",
       },
-    ]
+    ],
   },
 
   resultsImages: [
     {
       sourceKey: "result1",
       alt: "Performance across synthetic-only datasets",
-      caption: "Performance across synthetic-only datasets of varying sizes (50–345).",
+      caption:
+        "Performance across synthetic-only datasets of varying sizes (50–345).",
     },
-    
+
     {
       sourceKey: "result3",
       alt: "Gap between real-test and synthetic-test evaluation",
@@ -94,15 +102,18 @@ const medicalAIProject:MedicalAIProject = {
       caption: "Performance effect of mixed synthetic-real training.",
     },
     {
-      sourceKey: "result4",
-      alt: "We have integrated into the robotic arm VLAs",
-      caption: "We have integrated into the robotic arm VLAs.",
-    },
-    {
       sourceKey: "perception_demo",
       type: "video",
       alt: "Performance across synthetic-only datasets",
-      caption: "This is a visual demonstration of visual perception alone(With interpretability auxiliary lines).",
+      caption:
+        "This is a visual demonstration of visual perception alone(With interpretability auxiliary lines).",
+    },
+    {
+      sourceKey: "Integration_VLAs",
+      type: "video",
+
+      alt: "We have integrated into the robotic arm VLAs",
+      caption: "We have integrated into the robotic arm VLAs.",
     },
   ],
 
@@ -110,10 +121,7 @@ const medicalAIProject:MedicalAIProject = {
     email: "yshen4@students.kennesaw.edu",
   },
   openSourcedCode: "https://github.com/",
-  paper: ""
+  paper: "",
 };
 
-
-export {
-  medicalAIProject
-}
+export { medicalAIProject };
