@@ -107,13 +107,14 @@ const medicalAIProject: MedicalAIProject = {
       alt: "Performance across synthetic-only datasets",
       caption:
         "This is a visual demonstration of visual perception alone(With interpretability auxiliary lines).",
+      url: "https://digitalcommons.kennesaw.edu/cgi/viewcontent.cgi?article=1632&context=cday",
     },
     {
       sourceKey: "Integration_VLAs",
       type: "video",
-
       alt: "We have integrated into the robotic arm VLAs",
-      caption: "We have integrated into the robotic arm VLAs.",
+      caption: "We have integrated into the robotic arm VLAs.(GRP-21186)",
+      url: "https://digitalcommons.kennesaw.edu/cgi/viewcontent.cgi?article=1664&context=cday",
     },
   ],
 
@@ -122,6 +123,8 @@ const medicalAIProject: MedicalAIProject = {
   },
   openSourcedCode: "https://github.com/",
   paper: "",
+  socialMediaPresentation:
+    "https://www.youtube.com/watch?v=FvUq3omnbpk&feature=youtu.be",
 };
 
 export { medicalAIProject };

@@ -1,7 +1,10 @@
 // components/research/ResultsSection.tsx
-import type { MedicalAIProject } from '@/front_db/typing';
-import { SectionShell } from './SectionShell';
-import { getImageUrlByKey, getVideoUrlByKey } from '@/utlis/dynamicResourceModules';
+import type { MedicalAIProject } from "@/front_db/typing";
+import { SectionShell } from "./SectionShell";
+import {
+  getImageUrlByKey,
+  getVideoUrlByKey,
+} from "@/utlis/dynamicResourceModules";
 
 interface ResultsSectionProps {
   project: MedicalAIProject;
@@ -22,7 +25,7 @@ export function ResultsSection({ project }: ResultsSectionProps) {
             className="rounded-2xl overflow-hidden bg-white shadow"
           >
             <div className="aspect-video bg-slate-100">
-              {fig.type === 'video' ? (
+              {fig.type === "video" ? (
                 <video
                   src={getVideoUrlByKey(fig.sourceKey)}
                   controls
@@ -39,7 +42,16 @@ export function ResultsSection({ project }: ResultsSectionProps) {
               )}
             </div>
             {fig.caption && (
-              <p className="text-xs text-slate-500 p-3">{fig.caption}</p>
+              <p
+                className={`text-xs text-slate-500 p-3
+                ${fig.url ? "cursor-pointer text-blue-500 hover:underline" : ""}
+                `}
+                onClick={() => {
+                  if (fig.url) window.open(fig.url, "_blank");
+                }}
+              >
+                {fig.caption}
+              </p>
             )}
           </div>
         ))}

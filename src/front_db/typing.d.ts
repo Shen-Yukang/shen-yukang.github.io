@@ -1,4 +1,3 @@
-
 // 通用 media 类型
 export type MediaType = "image" | "video";
 
@@ -20,8 +19,8 @@ export interface ResearchProject {
   title: string;
   rp_id: string;
   tags: Tag[];
-  routeUrl?: string;   // 有的用内部路由
-  url?: string;        // 有的可能直接外部 https 链接
+  routeUrl?: string; // 有的用内部路由
+  url?: string; // 有的可能直接外部 https 链接
   time: string;
   description: string;
   bullets: string[];
@@ -37,7 +36,6 @@ export interface Publication {
   url?: string;
   media?: Media;
 }
-
 
 export interface MedicalAIProject {
   title: string;
@@ -58,8 +56,9 @@ export interface MedicalAIProject {
     images: {
       sourceKey: string;
       alt: string;
-      type?: "image"|"video",
+      type?: "image" | "video";
       caption: string;
+      url?: string;
     }[];
   };
 
@@ -67,10 +66,10 @@ export interface MedicalAIProject {
 
   methods: {
     steps: string[];
-    images:{
+    images: {
       sourceKey: string;
       alt: string;
-      type?: "image"|"video",
+      type?: "image" | "video";
       caption: string;
     }[];
   };
@@ -78,13 +77,15 @@ export interface MedicalAIProject {
   resultsImages: {
     sourceKey: string;
     alt: string;
-    type?: "image"|"video",
+    type?: "image" | "video";
     caption: string;
+    url?: string;
   }[];
 
   contact: {
     email: string;
   };
-  openSourcedCode: string
-  paper:string
+  openSourcedCode: string;
+  paper: string;
+  socialMediaPresentation: string;
 }
