@@ -75,7 +75,7 @@ const medicalAIProject: MedicalAIProject = {
     ],
     images: [
       {
-        sourceKey: "overall_architecture",
+        sourceKey: "overall_architecture_v2",
         alt: "Clinical data collection limitations",
         caption:
           "Limited real injection data due to privacy and clinical workflow constraints.",
@@ -107,14 +107,14 @@ const medicalAIProject: MedicalAIProject = {
       alt: "Performance across synthetic-only datasets",
       caption:
         "This is a visual demonstration of visual perception alone(With interpretability auxiliary lines).",
-      url: "https://digitalcommons.kennesaw.edu/cgi/viewcontent.cgi?article=1632&context=cday",
+      // url: "https://digitalcommons.kennesaw.edu/cgi/viewcontent.cgi?article=1632&context=cday",
     },
     {
       sourceKey: "Integration_VLAs",
       type: "video",
-      alt: "We have integrated into the robotic arm VLAs",
-      caption: "We have integrated into the robotic arm VLAs.(GRP-21186)",
-      url: "https://digitalcommons.kennesaw.edu/cgi/viewcontent.cgi?article=1664&context=cday",
+      alt: "We have integrated into the robotic arm c",
+      caption: "We have integrated into the robotic arm VLAs.",
+      // url: "https://digitalcommons.kennesaw.edu/cgi/viewcontent.cgi?article=1664&context=cday",
     },
   ],
 

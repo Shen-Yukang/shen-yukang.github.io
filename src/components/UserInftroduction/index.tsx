@@ -3,7 +3,9 @@ import { getPDFUrlByKey } from "@/utlis/dynamicResourceModules";
 import "./index.css";
 import ReactMarkdown from "react-markdown";
 
-const ResearchInterest = `Cross-disciplinary spatial perception, physics-informed sensing, embodied intelligence for medical and healthcare scenario.`;
+const ResearchInterest = `World Models, Embodied AI, Spatial Perception, Safety-aware Medical AI`;
+const cvPdfUrl =
+  getPDFUrlByKey("phD_CV_YukangShen") ?? "/phD_CV_YukangShen.pdf";
 
 const HeroInroductionAcdemic = () => {
   return (
@@ -16,6 +18,7 @@ const HeroInroductionAcdemic = () => {
       {/* 右侧文字块 */}
       <div className="hero-text">
         <h1 className="name">Yukang Shen</h1>
+        <h3>Courtesy name: Runchang (润常)</h3>
 
         <p className="hero-title">
           Graduate Research Assistant · M.S. Software Engineering, Kennesaw
@@ -39,15 +42,6 @@ const HeroInroductionAcdemic = () => {
           >
             {ResearchInterest}
           </ReactMarkdown>
-
-          <p className="mt-2 text-sm text-slate-800">
-            <span className="text-indigo-700 font-medium">
-              I am currently seeking Ph.D. opportunities
-            </span>{" "}
-            in high-precision spatial perception, physics-informed sensing, and
-            embodied intelligence for real-world medical and healthcare
-            applications. - "ongoing"
-          </p>
         </p>
 
         {/* 链接区域 */}
@@ -65,11 +59,7 @@ const HeroInroductionAcdemic = () => {
             GitHub
           </a>
           <span>/</span>
-          <a
-            href={getPDFUrlByKey("phD_CV_Yukang")}
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={cvPdfUrl} target="_blank" rel="noreferrer">
             Full CV (PDF)
           </a>
         </div>

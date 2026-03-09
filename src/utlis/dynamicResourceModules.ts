@@ -1,4 +1,4 @@
-const imageModules = import.meta.glob('../assets/imgs/*.png', {
+const imageModules = import.meta.glob('../assets/imgs/*.{png,svg}', {
   eager: true,
   import: 'default',
 }) as Record<string, string>
@@ -13,13 +13,15 @@ const docModules = import.meta.glob('../assets/docs/*.pdf', {
   import: 'default',
 }) as Record<string, string>
 
-// 约定：文件名（不含后缀）作为 key，比如 result.png -> result
+// 约定：文件名（不含后缀）作为 key，比如 result.png/result.svg -> result
 export function getImageUrlByKey(key: string): string | undefined {
-  // ../assets/imgs/result.png
-  const entry = Object.entries(imageModules).find(([path]) =>
-    path.endsWith(`/imgs/${key}.png`),
-  )
-  return entry?.[1] // 这里就是打包后的真实 URL
+  // 优先 svg（矢量图），缺省回退 png
+  const entries = Object.entries(imageModules)
+  const svgEntry = entries.find(([path]) => path.endsWith(`/imgs/${key}.svg`))
+  if (svgEntry) return svgEntry[1]
+
+  const pngEntry = entries.find(([path]) => path.endsWith(`/imgs/${key}.png`))
+  return pngEntry?.[1] // 这里就是打包后的真实 URL
 }
 
 // 约定：文件名（不含后缀）作为 key，比如 result.png -> result

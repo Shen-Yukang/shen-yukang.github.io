@@ -34,7 +34,7 @@ const researchProjects: ResearchProject[] = [
     ],
     media: {
       type: "image",
-      sourceKey: "overall_architecture",
+      sourceKey: "overall_architecture_v2",
       alt: "Deltoid injection perception pipeline",
     },
   },

@@ -32,7 +32,7 @@ const ResearchProjectView = ({
         perception modules for embodied AI systems, with a focus on medical
         injection scenarios, and robust VLA safety.
         <span className="ml-[6px] text-xs text-slate-400">
-          {`[ Last updated: 11/22/2025 ]`}
+          {`[ Last updated: 02/10/2026 ]`}
         </span>
       </p>
 

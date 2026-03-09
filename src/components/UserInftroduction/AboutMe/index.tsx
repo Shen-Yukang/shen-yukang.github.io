@@ -2,11 +2,9 @@
 import ReactMarkdown from "react-markdown";
 import "./index.css";
 
-const introdution = `I am currently a graduate assistant at KSU. My research focuses on **physics-informed, high-precision spatial perception**. I study how models learn geometric structure, spatial relationships, and reliable measurements from visual and multimodal inputs, and how these capabilities can support interpretable and safe decision-making.
+const introdution = `I am a Graduate Research Assistant at Kennesaw State University. My research focuses on **high-precision spatial perception**, **spatial reasoning**, **world models**, and **agent-centric learning frameworks** for embodied intelligence.
 
-While my work centers on the foundations of spatial intelligence, I am especially interested in applications in **medical and rehabilitation technology**. From the experiences and health challenges I have observed around me, I believe accessible and trustworthy rehabilitation technologies will play an increasingly important role. This motivates my interest in building perception systems that are accurate, reliable, and suitable for real-world clinical settings.
-
-Given the limitations of current AI—particularly in explainability and precision—I pursue **cross-disciplinary strategies** to achieve robust spatial understanding that can truly enable safe and affordable medical robotics.`;
+**My work aims to build system-level embodied AI agents** that integrate perception, reasoning, and action for safe and reliable deployment in real-world environments. The current focus includes interpretable and safety-aware perception systems with applications in **medical and rehabilitation technologies**, aiming to translate embodied AI research into practical clinical systems.`;
 
 const AboutMe = () => {
   return (
