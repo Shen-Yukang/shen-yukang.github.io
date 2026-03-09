@@ -3,7 +3,7 @@ import { getPDFUrlByKey } from "@/utlis/dynamicResourceModules";
 import "./index.css";
 import ReactMarkdown from "react-markdown";
 
-const ResearchInterest = `World Models, Embodied AI, Spatial Perception, Safety-aware Medical AI`;
+const ResearchInterest = `Embodied AI, World Models, Spatial Perception, Spatial Reasoning, Safe and Reliable AI Systems`;
 const cvPdfUrl =
   getPDFUrlByKey("phD_CV_YukangShen") ?? "/phD_CV_YukangShen.pdf";
 
