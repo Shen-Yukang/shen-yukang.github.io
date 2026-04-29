@@ -7,7 +7,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/rp/synthetic_data_engine/:id" element={<ResearchProjectShow />} />
+        <Route path="/rp/:slug/:id" element={<ResearchProjectShow />} />
       </Routes>
     </>
   )

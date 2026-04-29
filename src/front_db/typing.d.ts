@@ -37,9 +37,25 @@ export interface Publication {
   media?: Media;
 }
 
-export interface MedicalAIProject {
+export interface ResearchFigure {
+  sourceKey: string;
+  alt: string;
+  type?: "image" | "video";
+  caption: string;
+  url?: string;
+}
+
+export interface ResourceLink {
+  label: string;
+  href?: string;
+  pdfSourceKey?: string;
+}
+
+export interface ResearchProjectDetail {
+  id: string;
   title: string;
   subtitle: string;
+  headerLabel?: string;
 
   summary: {
     problem: string;
@@ -48,44 +64,38 @@ export interface MedicalAIProject {
   };
 
   background: {
+    sectionTitle: string;
+    challengesTitle: string;
+    mediaTitle: string;
     intro: string;
     challenges: {
       question: string;
       answer: string;
     }[];
-    images: {
-      sourceKey: string;
-      alt: string;
-      type?: "image" | "video";
-      caption: string;
-      url?: string;
-    }[];
+    images: ResearchFigure[];
   };
 
   contributions: string[];
 
   methods: {
+    sectionTitle: string;
+    description: string;
     steps: string[];
-    images: {
-      sourceKey: string;
-      alt: string;
-      type?: "image" | "video";
-      caption: string;
-    }[];
+    images: ResearchFigure[];
   };
 
-  resultsImages: {
-    sourceKey: string;
-    alt: string;
-    type?: "image" | "video";
-    caption: string;
-    url?: string;
-  }[];
+  results: {
+    sectionTitle: string;
+    description: string;
+    figures: ResearchFigure[];
+  };
+
+  resources: {
+    sectionTitle: string;
+    links: ResourceLink[];
+  };
 
   contact: {
     email: string;
   };
-  openSourcedCode: string;
-  paper: string;
-  socialMediaPresentation: string;
 }

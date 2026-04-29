@@ -1,5 +1,5 @@
 // components/research/ResultsSection.tsx
-import type { MedicalAIProject } from "@/front_db/typing";
+import type { ResearchProjectDetail } from "@/front_db/typing";
 import { SectionShell } from "./SectionShell";
 import {
   getImageUrlByKey,
@@ -7,19 +7,16 @@ import {
 } from "@/utlis/dynamicResourceModules";
 
 interface ResultsSectionProps {
-  project: MedicalAIProject;
+  project: ResearchProjectDetail;
 }
 
 export function ResultsSection({ project }: ResultsSectionProps) {
-  const figs = project.resultsImages ?? [];
+  const { figures, sectionTitle, description } = project.results;
 
   return (
-    <SectionShell
-      title="Evaluation & Key Results"
-      description="We summarize core quantitative results and synthetic→real generalization."
-    >
+    <SectionShell title={sectionTitle} description={description}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {figs.map((fig) => (
+        {figures.map((fig) => (
           <div
             key={fig.sourceKey}
             className="rounded-2xl overflow-hidden bg-white shadow"

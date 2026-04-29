@@ -28,11 +28,11 @@ const ResearchProjectView = ({
     <>
       <h2>Research(In Progress)</h2>
       <p className="section-intro text-slate-700">
-        I currently work on synthetic-first pipelines and safety-aware
-        perception modules for embodied AI systems, with a focus on medical
-        injection scenarios, and robust VLA safety.
+        My current work spans embodied memory substrates, safety-aware decision
+        support for VLA systems, and synthetic-first perception pipelines for
+        high-stakes human-centered scenarios.
         <span className="ml-[6px] text-xs text-slate-400">
-          {`[ Last updated: 02/10/2026 ]`}
+          {`[ Last updated: 04/29/2026 ]`}
         </span>
       </p>
 
@@ -51,6 +51,7 @@ const ResearchProjectView = ({
                   {proj.tags.map((tag) => {
                     return (
                       <span
+                        key={`${proj.title}-${tag.text}`}
                         className="project-tag"
                         style={{
                           backgroundColor: tag.color,

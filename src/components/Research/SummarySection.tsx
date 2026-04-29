@@ -1,5 +1,5 @@
 // components/research/SummarySection.tsx
-import type { MedicalAIProject } from '@/front_db/typing';
+import type { ResearchProjectDetail } from '@/front_db/typing';
 import { SectionShell } from './SectionShell';
 import ReactMarkdown from 'react-markdown';
 
@@ -30,7 +30,7 @@ function SummaryCard({ title, content }: { title: string; content: string }) {
 }
 
 interface SummarySectionProps {
-  project: MedicalAIProject;
+  project: ResearchProjectDetail;
 }
 
 export function SummarySection({ project }: SummarySectionProps) {

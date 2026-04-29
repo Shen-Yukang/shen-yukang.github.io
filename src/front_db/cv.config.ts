@@ -2,6 +2,41 @@ import type { Publication, ResearchProject } from "./typing";
 
 const researchProjects: ResearchProject[] = [
   {
+    title: "MES: Memory Substrate for Embodied AI",
+    rp_id: "1112360",
+    tags: [
+      {
+        text: "Embodied Memory",
+        color: "#DDF3E9",
+        fontColor: "#174B38",
+      },
+      {
+        text: "VLA / TAMP Augmentation",
+        color: "#E7F0FF",
+        fontColor: "#1D4678",
+      },
+      {
+        text: "C-Day Demo Focus",
+        color: "#B45309",
+        fontColor: "white",
+      },
+    ],
+    routeUrl: "/rp/memory_substrate",
+    time: "2026 Spring - Ongoing",
+    description:
+      "Building an external memory substrate that stores task-relevant embodied experience as retrievable, evidence-backed memories for safer and more adaptive downstream robot decisions.",
+    bullets: [
+      "Projects upstream robot traces into task-conditioned object graph transitions instead of dumping raw logs.",
+      "Controls memory with explicit write, merge, stub, and forget decisions under a risk-coverage constraint.",
+      "Retrieves risk warnings, action priors, and repair strategies that can condition VLA or planner decisions before retraining.",
+    ],
+    media: {
+      type: "image",
+      sourceKey: "mes_stage_a_runtime",
+      alt: "MES Stage A runtime architecture",
+    },
+  },
+  {
     title: "Synthetic-First Data Engine for Medical Segmentation",
     rp_id: "1112356",
     tags: [
@@ -56,11 +91,6 @@ const researchProjects: ResearchProject[] = [
       "Connects perception quality to task-level safety constraints in injection and AR-assist settings.",
       "Explores cross-disciplinary, physics-informed spatial perception to achieve higher geometric precision and interpretable structure understanding.",
     ],
-    media: {
-      type: "image",
-      sourceKey: "",
-      alt: "Coming soon",
-    },
   },
 ];
 
