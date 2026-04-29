@@ -5,31 +5,57 @@ import {
   getImageUrlByKey,
   getVideoUrlByKey,
 } from "@/utlis/dynamicResourceModules";
+import { MesDiagram } from "./MesDiagram";
+import { isMesDiagramKey } from "./mesDiagramKeys";
 
 interface ResultsSectionProps {
   project: ResearchProjectDetail;
 }
 
 export function ResultsSection({ project }: ResultsSectionProps) {
-  const { figures, sectionTitle, description } = project.results;
+  const { figures, sectionTitle, description, comparison } = project.results;
 
   return (
     <SectionShell title={sectionTitle} description={description}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {comparison ? (
+        <div className="grid gap-4 md:grid-cols-2">
+          <article className="rounded-2xl border border-emerald-100 bg-white p-4 shadow-sm">
+            <h3 className="text-sm font-semibold text-emerald-900">
+              {comparison.leftTitle}
+            </h3>
+            <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-emerald-50 p-3 text-xs leading-relaxed text-slate-800">
+              {comparison.leftInput}
+            </pre>
+          </article>
+          <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <h3 className="text-sm font-semibold text-slate-900">
+              {comparison.rightTitle}
+            </h3>
+            <pre className="mt-3 whitespace-pre-wrap rounded-xl bg-slate-50 p-3 text-xs leading-relaxed text-slate-800">
+              {comparison.rightInput}
+            </pre>
+          </article>
+        </div>
+      ) : null}
+
+      <div className="grid grid-cols-1 gap-6">
         {figures.map((fig) => (
           <div
             key={fig.sourceKey}
             className="rounded-2xl overflow-hidden bg-white shadow"
           >
-            <div className="aspect-video bg-slate-100">
+            <div className={isMesDiagramKey(fig.sourceKey) ? "bg-slate-100" : "aspect-video bg-slate-100"}>
               {fig.type === "video" ? (
                 <video
                   src={getVideoUrlByKey(fig.sourceKey)}
                   controls
-                  className="h-full w-full"
+                  className="h-full w-full bg-black"
                   autoPlay
                   muted
+                  playsInline
                 />
+              ) : isMesDiagramKey(fig.sourceKey) ? (
+                <MesDiagram sourceKey={fig.sourceKey} />
               ) : (
                 <img
                   src={getImageUrlByKey(fig.sourceKey)}

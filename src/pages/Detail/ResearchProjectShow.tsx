@@ -16,9 +16,9 @@ function ResearchProjectShow() {
       <main className="mx-auto max-w-5xl space-y-10">
         <ProjectHeader project={project} />
         <SummarySection project={project} />
-        <ResultsSection project={project} />
         <BackgroundSection project={project} />
         <MethodSection project={project} />
+        <ResultsSection project={project} />
         <ResourcesSection project={project} />
       </main>
     </div>

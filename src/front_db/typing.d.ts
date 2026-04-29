@@ -81,12 +81,27 @@ export interface ResearchProjectDetail {
     sectionTitle: string;
     description: string;
     steps: string[];
+    insight?: {
+      title: string;
+      body: string;
+      items: {
+        label: string;
+        text: string;
+      }[];
+      punchline: string;
+    };
     images: ResearchFigure[];
   };
 
   results: {
     sectionTitle: string;
     description: string;
+    comparison?: {
+      leftTitle: string;
+      leftInput: string;
+      rightTitle: string;
+      rightInput: string;
+    };
     figures: ResearchFigure[];
   };
 

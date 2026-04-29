@@ -5,6 +5,8 @@ import {
   getVideoUrlByKey,
 } from "@/utlis/dynamicResourceModules";
 import type { ResearchProject } from "@/front_db/typing";
+import { MesDiagram } from "@/components/Research/MesDiagram";
+import { isMesDiagramKey } from "@/components/Research/mesDiagramKeys";
 
 interface ResearchProjectViewProps {
   researchProjects: ResearchProject[];
@@ -76,7 +78,11 @@ const ResearchProjectView = ({
             {/* 右侧 media 区（图片 / 视频 / 预留空位） */}
             <div className="project-media">
               {proj.media ? (
-                proj.media.type === "image" ? (
+                proj.media.type === "image" && isMesDiagramKey(proj.media.sourceKey) ? (
+                  <div className="project-media-img overflow-hidden bg-white">
+                    <MesDiagram sourceKey={proj.media.sourceKey} />
+                  </div>
+                ) : proj.media.type === "image" ? (
                   <img
                     src={getImageUrlByKey(proj.media.sourceKey)}
                     alt={proj.media.alt}

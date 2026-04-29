@@ -150,114 +150,138 @@ const medicalAIProject: ResearchProjectDetail = {
 
 const mesProject: ResearchProjectDetail = {
   id: "1112360",
-  title: "MES: Memory Substrate for Embodied Decision-Making",
+  title: "MES: Lifecycle-Controlled MemoryIR for Embodied AI",
   subtitle:
-    "A Stage A engineering prototype that turns embodied experience into evidence-backed, retrievable memory for safer and more adaptive robot decisions.",
+    "A C-Day research demo on what current embodied memory systems miss, and how a MemoryIR substrate can preserve action-conditioned experience without becoming raw RAG, full episodic replay, or a closed-model hidden cache.",
   headerLabel: "C-Day Demo Project",
 
   summary: {
     problem:
-      "Today's VLA and planner stacks are strong at perception and execution, but they still **forget past failures, risky relations, and repair strategies** unless we retrain or hand-script them.",
+      "Existing embodied memory often retrieves **what was seen** or stores long trajectories, but it rarely captures **what action changed what relation, what outcome followed, and what is safe to forget**.",
     theme:
-      "MES builds an external **memory substrate**: adapt upstream traces into task-conditioned object-graph transitions, consolidate repeated interaction patterns into `MemoryIR`, and retrieve them as risk constraints, action priors, and repair hints.",
+      "MES is a **lifecycle-controlled embodied MemoryIR substrate**: action-conditioned, evidence-backed, hybrid structured-plus-embedding memory that stays model-agnostic and auditable.",
     result:
-      "Stage A is already implemented and validated on synthetic and TiPToP-linked runs: **memory write / merge / risk-preserving forgetting / retrieval / scoring** all pass, and conditioned retrieval has already shifted downstream target selection in robot-facing experiments.",
+      "Stage A demonstrates **write / merge / compress / stub / forget / retrieve / score** over embodied traces, with risk coverage protecting safety memories and retrieved MemoryIR influencing downstream robot-facing decisions.",
   },
 
   background: {
-    sectionTitle: "Why This Project Exists",
-    challengesTitle: "Core Research Questions",
-    mediaTitle: "What MES Must Solve",
+    sectionTitle: "Research Background: What Current Memory Misses",
+    challengesTitle: "Gaps In Existing Embodied Memory",
+    mediaTitle: "Memory Substrate Design Targets",
     intro:
-      "MES is not another monolithic robot model. It is a narrower and more practical layer: store the task-relevant spatial-temporal experience that robots accumulate, keep it evidence-backed, compress it into reusable abstractions, and surface it at decision time without taking over execution from the downstream controller.",
+      "The core question is not whether a robot can retrieve more context. The harder question is what embodied experience should become memory, how it should be compressed, and when it is safe to forget. MES starts from the limitations of current memory lines and positions itself as a middle route between passive retrieval and expensive world-model training.",
     challenges: [
       {
-        question: "Q1 · What should a robot actually remember?",
+        question: "RAG-style memory",
         answer:
-          "Not raw pixels forever. MES stores task-conditioned object relations, transition patterns, failure boundaries, and repair cues only when they can change a future decision.",
+          "Mostly recalls text or visual fragments. It can remember what was seen, but often misses the action-before/action-after causal structure that explains what changed.",
       },
       {
-        question: "Q2 · How do we keep memory useful instead of noisy?",
+        question: "Episodic memory",
         answer:
-          "Stage A adds lifecycle control: write, merge, stub, and forget are all explicit decisions under a storage budget and a risk-coverage constraint.",
+          "Stores complete episodes or trajectories. It preserves information, but retrieval is slower, redundancy is high, and automatic compression is difficult.",
       },
       {
-        question: "Q3 · How can memory help before model retraining?",
+        question: "VLA internal memory / hidden state",
         answer:
-          "Retrieved memories are converted into prompt constraints, action priors, safety gates, and later token-side integration paths for VLA systems.",
+          "Closer to model decisions, but tied to specific architectures, often unavailable in closed models, hard to audit, and weak for cross-model transfer.",
+      },
+      {
+        question: "World models and video representation learning",
+        answer:
+          "Powerful, but costly to train and data hungry. They are not the fastest path for a short-term deployable research demo.",
+      },
+      {
+        question: "Hand-designed symbolic memory",
+        answer:
+          "Interpretable, but fixed schemas generalize poorly and can collapse into a brittle rule database.",
       },
     ],
-    images: [
-      {
-        sourceKey: "mes_stage_a_runtime",
-        alt: "MES Stage A runtime graph",
-        caption:
-          "Online path: adapt experience, build candidates, run lifecycle control, retrieve memory, and feed decisions back from outcomes.",
-      },
-      {
-        sourceKey: "mes_stage_a_lifecycle",
-        alt: "MES memory lifecycle decisions",
-        caption:
-          "Memory is actively managed: high-value patterns are preserved, low-value clutter is demoted, and risk-bearing memories remain protected.",
-      },
-      {
-        sourceKey: "mes_integration_ladder",
-        alt: "MES integration ladder",
-        caption:
-          "The integration roadmap starts with external decision support and grows toward deeper VLA conditioning.",
-      },
-    ],
+    images: [],
   },
 
   contributions: [
-    "Defines a clean Stage A substrate boundary: upstream traces are adapted into task-conditioned object graph transitions rather than raw visual dumps.",
-    "Builds lifecycle-controlled memory with evidence refs, risk coverage protection, retrieval, and action scoring instead of passive logging.",
-    "Provides a credible integration story for VLA/TAMP systems: prompt constraints first, action reranking next, token-style conditioning later.",
+    "Reframes embodied memory from passive retrieval to lifecycle control: what should be written, merged, compressed, stubbed, or forgotten.",
+    "Defines MemoryIR as a hybrid representation with structured action-conditioned transitions, summaries, embeddings, and evidence pointers.",
+    "Protects safety-relevant experience through risk coverage, while keeping the substrate model-agnostic and future-training-ready.",
   ],
 
   methods: {
-    sectionTitle: "System Design & Demo Flow",
+    sectionTitle: "Method: Lifecycle-Controlled MemoryIR",
     description:
-      "For the C-Day talk, the cleanest story is to walk from embodied experience to decision influence in five stages:",
+      "MES is deliberately positioned as a middle route: not raw RAG, not a full world model, not a VLA-internal cache, and not a static symbolic database.",
     steps: [
-      "ExperienceInputAdapter converts upstream traces from VLMs, planners, simulations, or logs into task-conditioned object graph transitions `(g_t, G_t, a_t, G'_t, y_t, e_t, η_t)`.",
-      "Episode buffering and projection preserve short-horizon temporal structure while extracting risk events, repair attempts, and evidence references.",
-      "Consolidation lifts repeated fragments into `MemoryIR` patterns that capture preconditions, transition structure, failure boundaries, and support counts.",
-      "Lifecycle control chooses whether to write, merge, stub, or forget each candidate memory under a storage budget while enforcing minimum risk coverage.",
-      "At runtime, retrieval and scoring translate memory into actionable outputs for downstream systems: warnings, action priors, feasibility signals, and repair suggestions.",
+      "Project upstream traces from VLMs, planners, simulations, or robot logs into task-conditioned object graph transitions: goal, before-state, action, after-state, outcome, evidence, and metadata.",
+      "Build candidate MemoryIR items that preserve action-conditioned relation changes instead of only captions, screenshots, or full episode replay.",
+      "Store each memory as a hybrid payload: structured IR for reasoning, natural-language summary for inspection, embedding for retrieval, and evidence refs for traceability.",
+      "Run lifecycle control over new and existing memories: write useful new experience, merge repeated patterns, compress supported abstractions, stub low-value items, and forget only when risk coverage remains satisfied.",
+      "Retrieve MemoryIR at decision time and translate it into risk warnings, action priors, feasibility signals, repair hints, and future dataset/fine-tuning candidates.",
     ],
+    insight: {
+      title: "Dissipation-Inspired Memory Lifecycle",
+      body:
+        "Inspired by dissipative systems that maintain useful structure under continuous exchange with the environment, MES treats embodied memory as an active substrate rather than a passive archive.",
+      items: [
+        {
+          label: "Inflow",
+          text: "new embodied traces enter the substrate.",
+        },
+        {
+          label: "Structure",
+          text: "repeated action-outcome patterns form MemoryIR.",
+        },
+        {
+          label: "Preservation",
+          text: "high-utility and risk-relevant memories stay protected.",
+        },
+        {
+          label: "Dissipation",
+          text: "redundant or low-value traces are compressed, stubbed, or forgotten.",
+        },
+      ],
+      punchline:
+        "Memory should not grow as a passive archive; it should maintain useful structure under continual experience flow.",
+    },
     images: [
       {
         sourceKey: "mes_stage_a_runtime",
         alt: "MES runtime architecture",
         caption:
-          "The runtime graph emphasizes that MES owns augmentation, not execution: downstream VLA or planner stacks still act, while MES contributes memory-conditioned guidance.",
+          "Runtime flow: embodied trace -> MemoryIR candidate -> lifecycle controller -> retrievable memory -> decision-facing context.",
+      },
+      {
+        sourceKey: "mes_architecture",
+        alt: "MES method architecture overview",
+        caption:
+          "Method architecture: MES separates upstream embodied traces, MemoryIR construction, lifecycle management, and downstream VLA / planner conditioning.",
+      },
+      {
+        sourceKey: "mes_more_detail_overview",
+        alt: "Detailed MES MemoryIR overview",
+        caption:
+          "Detailed MemoryIR view: the substrate combines action-conditioned relation changes, lifecycle state, retrieval signals, evidence pointers, and future training-ready experience records.",
       },
     ],
   },
 
   results: {
-    sectionTitle: "Validation & Why It Matters",
+    sectionTitle: "Demo Result: Memory Retrieval Changes the Input Context",
     description:
-      "Even in Stage A, MES already has a concrete validation story rather than only a conceptual pitch.",
+      "The demo compares the same task with and without retrieved embodied memory. The memory-enhanced input provides risk and graspability context before action selection.",
+    comparison: {
+      leftTitle: "With Memory Retrieval",
+      leftInput:
+        'INPUT: "Put the cube on the red bowl."\n\n<RelevantMemory>: The red cube is unsafe and should be avoided. The yellow cube has a slippery surface and is hard to grasp. The green cube is fragile.',
+      rightTitle: "Original Instruction Only",
+      rightInput: 'INPUT: "Put the cube on the red bowl."',
+    },
     figures: [
       {
-        sourceKey: "mes_stage_a_lifecycle",
-        alt: "Lifecycle validation view",
+        sourceKey: "memor_ehanced_test",
+        type: "video",
+        alt: "Memory-enhanced instruction demo",
         caption:
-          "Synthetic Stage A tests already cover buffer chunking, consolidation, write/merge, risk-locked forgetting rejection, risk-preserving stubbing, retrieval, and candidate action scoring.",
-      },
-      {
-        sourceKey: "mes_stage_a_runtime",
-        alt: "Runtime retrieval story",
-        caption:
-          "The demo pipeline shows a collision-risk memory being written from an episode and later retrieved back as a risk constraint with evidence references.",
-      },
-      {
-        sourceKey: "mes_integration_ladder",
-        alt: "Integration roadmap for downstream policies",
-        caption:
-          "In TiPToP-linked validation, MES-style contextual memory already changed downstream grounding behavior, showing that the substrate can influence action choice before any end-to-end retraining.",
+          "Memory-enhanced execution uses retrieved risk and manipulation context, while the baseline receives only the raw instruction.",
       },
     ],
   },
