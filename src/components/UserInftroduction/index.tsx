@@ -1,11 +1,10 @@
-import { getPDFUrlByKey } from "@/utlis/dynamicResourceModules";
-
 import "./index.css";
 import ReactMarkdown from "react-markdown";
 
-const ResearchInterest = `Embodied AI, World Models, Spatial Perception, Spatial Reasoning, Safe and Reliable AI Systems`;
-const cvPdfUrl =
-  getPDFUrlByKey("phD_CV_YukangShen") ?? "/phD_CV_YukangShen.pdf";
+const ResearchInterest = `**Physical AI** — continual embodied learning, multimodal embodied representation learning, hierarchical control policies, and compact brain-inspired agent architectures`;
+
+// CV PDF lives in public/DataEngine; reference it through the configured base path
+const cvPdfUrl = `${import.meta.env.BASE_URL}DataEngine/phD_CV_Yukang.pdf`;
 
 const HeroInroductionAcdemic = () => {
   return (

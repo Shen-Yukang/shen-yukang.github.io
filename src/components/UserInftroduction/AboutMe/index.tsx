@@ -2,9 +2,9 @@
 import ReactMarkdown from "react-markdown";
 import "./index.css";
 
-const introdution = `I am a Graduate Research Assistant at Kennesaw State University. My research focuses on **high-precision spatial perception**, **spatial reasoning**, **world models**, and **agent-centric learning frameworks** for embodied intelligence.
+const introdution = `I am a Graduate Research Assistant at Kennesaw State University, working on **Physical AI** and **continual embodied learning**. My research centers on **multimodal embodied representation learning**, **hierarchical control policies**, and **compact, brain-inspired agent architectures** that let embodied agents adapt continually from physical interaction.
 
-**My work aims to build system-level embodied AI agents** that integrate perception, reasoning, and action for safe and reliable deployment in real-world environments. The current focus includes interpretable and safety-aware perception systems with applications in **medical and rehabilitation technologies**, aiming to translate embodied AI research into practical clinical systems.`;
+I am currently building a **biologically inspired memory infrastructure for Physical AI** — with modular, brain-region-like memory organization and multi-channel feature learning — to move embodied agents beyond demo-centric pipelines toward integrated perception, memory, safety, and decision-making in a single lifelong-learning architecture. In parallel, I develop **real-calibrated, synthetic-first data engines for medical perception**, with applications such as deltoid injection-site segmentation and safety-zone guidance.`;
 
 const AboutMe = () => {
   return (

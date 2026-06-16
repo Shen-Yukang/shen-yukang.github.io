@@ -38,13 +38,15 @@ export function ResultsSection({ project }: ResultsSectionProps) {
         </div>
       ) : null}
 
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {figures.map((fig) => (
           <div
             key={fig.sourceKey}
-            className="rounded-2xl overflow-hidden bg-white shadow"
+            className={`rounded-2xl overflow-hidden bg-white shadow ${
+              fig.type === "video" ? "sm:col-span-2 lg:col-span-3" : ""
+            }`}
           >
-            <div className={isMesDiagramKey(fig.sourceKey) ? "bg-slate-100" : "aspect-video bg-slate-100"}>
+            <div className={fig.type === "video" ? "aspect-video bg-black" : "bg-slate-100"}>
               {fig.type === "video" ? (
                 <video
                   src={getVideoUrlByKey(fig.sourceKey)}
@@ -60,7 +62,7 @@ export function ResultsSection({ project }: ResultsSectionProps) {
                 <img
                   src={getImageUrlByKey(fig.sourceKey)}
                   alt={fig.alt}
-                  className="h-full w-full"
+                  className="h-auto w-full object-contain"
                 />
               )}
             </div>

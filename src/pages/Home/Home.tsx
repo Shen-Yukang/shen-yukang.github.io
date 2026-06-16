@@ -28,8 +28,8 @@ function App() {
 
       <footer className="footer">
         © {new Date().getFullYear()} Yukang Shen · Built with React & Vite
-        <br />
-        Version-"{new Date().toLocaleDateString()}"
+        {/* <br />
+        Version-"{new Date().toLocaleDateString()}" */}
       </footer>
     </div>
   );

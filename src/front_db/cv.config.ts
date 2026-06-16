@@ -2,11 +2,11 @@ import type { Publication, ResearchProject } from "./typing";
 
 const researchProjects: ResearchProject[] = [
   {
-    title: "MES: Memory Substrate for Embodied AI",
+    title: "Brain-Inspired Dynamic Memory System for Embodied AI",
     rp_id: "1112360",
     tags: [
       {
-        text: "Embodied Memory",
+        text: "Brain-Inspired Dynamic Memory",
         color: "#DDF3E9",
         fontColor: "#174B38",
       },
@@ -16,28 +16,42 @@ const researchProjects: ResearchProject[] = [
         fontColor: "#1D4678",
       },
       {
-        text: "C-Day Demo Focus",
-        color: "#B45309",
+        text: "In Development · 90%",
+        color: "#16A34A",
         fontColor: "white",
       },
     ],
-    routeUrl: "/rp/memory_substrate",
-    time: "2026 Spring - Ongoing",
+    time: "2026 Spring - Present",
     description:
-      "Building an external memory substrate that stores task-relevant embodied experience as retrievable, evidence-backed memories for safer and more adaptive downstream robot decisions.",
+      "A brain-inspired dynamic memory system for embodied AI, designed with security and safety as first-class goals for more adaptive and reliable downstream robot decisions.",
     bullets: [
-      "Projects upstream robot traces into task-conditioned object graph transitions instead of dumping raw logs.",
-      "Controls memory with explicit write, merge, stub, and forget decisions under a risk-coverage constraint.",
-      "Retrieves risk warnings, action priors, and repair strategies that can condition VLA or planner decisions before retraining.",
+      "Explores brain-inspired dynamic memory for more adaptive and reliable embodied decisions.",
+      "Builds in security and safety as first-class design goals.",
+      "Currently around 90% implemented and under active development.",
     ],
-    media: {
-      type: "image",
-      sourceKey: "mes_stage_a_runtime",
-      alt: "MES Stage A runtime architecture",
-    },
+    locked: true,
+  },
+
+  {
+    title: "Safety Benchmark for Embodied AI",
+    tags: [
+      {
+        text: "Vision–Language–Action Models",
+      },
+    ],
+    rp_id: "1112358",
+    url: "",
+    time: "",
+    description:
+      "Building a safety benchmark and safety-aware evaluation pipelines for embodied AI agents operating in medical and assistive scenarios.",
+    bullets: [
+      "Investigates how synthetic data and uncertainty signals can guide safer policy behaviors.",
+      "Connects perception quality to task-level safety constraints in injection and AR-assist settings.",
+      "Explores cross-disciplinary, physics-informed spatial perception to achieve higher geometric precision and interpretable structure understanding.",
+    ],
   },
   {
-    title: "Synthetic-First Data Engine for Medical Segmentation",
+    title: "A Real-Calibrated Synthetic-First Data Engine",
     rp_id: "1112356",
     tags: [
       {
@@ -53,7 +67,7 @@ const researchProjects: ResearchProject[] = [
         color: "",
       },
       {
-        text: "KSU C-day finalist research - 2025Fall",
+        text: "Second Place · KSU C-Day 2025 Fall",
         color: "#f5a142",
         fontColor: "white",
       },
@@ -68,33 +82,26 @@ const researchProjects: ResearchProject[] = [
       "Studies reliability metrics (AP shift, JS divergence, task success rate) for cross-domain generalization.",
     ],
     media: {
+      type: "video",
+      sourceKey: "perception_demo",
+      alt: "Synthetic-first data engine perception demo",
+    },
+  },
+];
+
+const publications: Publication[] = [
+  {
+    year: "2026",
+    title: "A Real-Calibrated Synthetic-First Data Engine",
+    authors: "Yukang Shen",
+    venue: "Preprint.",
+    url: "https://arxiv.org/pdf/2605.09699",
+    media: {
       type: "image",
       sourceKey: "overall_architecture_v2",
       alt: "Deltoid injection perception pipeline",
     },
   },
-  {
-    title: "VLA Safety for Embodied AI",
-    tags: [
-      {
-        text: "Vision–Language–Action Models",
-      },
-    ],
-    rp_id: "1112358",
-    url: "",
-    time: "",
-    description:
-      "Exploring safety-aware perception and data-centric pipelines for embodied AI agents operating in medical and assistive scenarios.",
-    bullets: [
-      "Investigates how synthetic data and uncertainty signals can guide safer policy behaviors.",
-      "Connects perception quality to task-level safety constraints in injection and AR-assist settings.",
-      "Connects perception quality to task-level safety constraints in injection and AR-assist settings.",
-      "Explores cross-disciplinary, physics-informed spatial perception to achieve higher geometric precision and interpretable structure understanding.",
-    ],
-  },
-];
-
-const publications: Publication[] = [
   {
     year: "2022",
     title:

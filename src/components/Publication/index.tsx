@@ -1,4 +1,4 @@
-import { getImageUrlByKey } from '@/utlis/dynamicResourceModules'
+import { getImageUrlByKey, getVideoUrlByKey } from '@/utlis/dynamicResourceModules'
 import './index.css'
 import type { Publication } from '@/front_db/typing'
 interface PublicationProps {
@@ -19,13 +19,27 @@ return (
                 <div className="pub-venue">{p.venue}</div>
             </div>
             <div className="pub-media">
-                {p.media && (
-                <img
-                    src={getImageUrlByKey(p.media.sourceKey)}
-                    alt={p.media.alt}
-                    className="pub-media-img"
-                />
-                )}
+                {p.media &&
+                  (p.media.type === "video" ? (
+                    <video
+                      src={getVideoUrlByKey(p.media.sourceKey)}
+                      className="pub-media-img"
+                      controls
+                      muted
+                      playsInline
+                      preload="metadata"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={getImageUrlByKey(p.media.sourceKey)}
+                      alt={p.media.alt}
+                      className="pub-media-img"
+                    />
+                  ))}
             </div>
             </a>
         ))}

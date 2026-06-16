@@ -68,14 +68,14 @@ export function BackgroundSection({ project }: BackgroundSectionProps) {
                 key={img.sourceKey}
                 className="rounded-2xl overflow-hidden bg-white shadow-sm"
               >
-                <div className={usesHtmlDiagrams ? "bg-slate-100" : "aspect-video bg-slate-100"}>
+                <div className="bg-slate-100">
                   {isMesDiagramKey(img.sourceKey) ? (
                     <MesDiagram sourceKey={img.sourceKey} />
                   ) : (
                     <img
                       src={getImageUrlByKey(img.sourceKey)}
                       alt={img.alt}
-                      className="h-full w-full object-cover"
+                      className="h-auto w-full object-contain"
                     />
                   )}
                 </div>

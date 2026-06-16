@@ -17,6 +17,8 @@ const ResearchProjectView = ({
 }: ResearchProjectViewProps) => {
   const navigate = useNavigate();
   const handleClick = (proj: ResearchProject) => {
+    // 进行中 / 不公开的项目：禁用点击跳转
+    if (proj.locked) return;
     if (!proj.routeUrl) return;
     // 如果是外部链接
     if (/^https?:\/\//.test(proj.routeUrl)) {
@@ -34,7 +36,7 @@ const ResearchProjectView = ({
         support for VLA systems, and synthetic-first perception pipelines for
         high-stakes human-centered scenarios.
         <span className="ml-[6px] text-xs text-slate-400">
-          {`[ Last updated: 04/29/2026 ]`}
+          {`[ Last updated: 05/26/2026 ]`}
         </span>
       </p>
 
@@ -78,7 +80,8 @@ const ResearchProjectView = ({
             {/* 右侧 media 区（图片 / 视频 / 预留空位） */}
             <div className="project-media">
               {proj.media ? (
-                proj.media.type === "image" && isMesDiagramKey(proj.media.sourceKey) ? (
+                proj.media.type === "image" &&
+                isMesDiagramKey(proj.media.sourceKey) ? (
                   <div className="project-media-img overflow-hidden bg-white">
                     <MesDiagram sourceKey={proj.media.sourceKey} />
                   </div>
@@ -94,8 +97,11 @@ const ResearchProjectView = ({
                       src={getVideoUrlByKey(proj.media.sourceKey)}
                       controls
                       className="rounded-xl w-full shadow"
-                      autoPlay={false}
-                      muted={false}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
                     />
                   </div>
                 )

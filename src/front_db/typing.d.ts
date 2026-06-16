@@ -25,6 +25,8 @@ export interface ResearchProject {
   description: string;
   bullets: string[];
   media?: Media;
+  // 若设置为 true：禁用卡片点击跳转（用于进行中/不公开的项目）
+  locked?: boolean;
 }
 
 // Publication 类型
