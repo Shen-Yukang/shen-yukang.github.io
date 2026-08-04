@@ -1,0 +1,49 @@
+.research-credo {
+  max-width: 600px;
+  margin: 12px 0 14px;
+  padding: 0 0 0 12px;
+  border-left: 1px solid #cbd5e1;
+}
+
+.research-credo-quote {
+  margin: 0;
+}
+
+.research-credo-quote p {
+  margin: 0;
+  color: #334155;
+  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  line-height: 1.6;
+}
+
+.research-credo-quote cite {
+  display: block;
+  margin-top: 2px;
+  color: #94a3b8;
+  font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+  font-size: 12px;
+  font-style: normal;
+}
+
+.research-credo-statement {
+  margin: 6px 0 0;
+  color: #64748b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12.5px;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .research-credo {
+    margin-top: 12px;
+    padding-left: 12px;
+  }
+
+  .research-credo-quote p {
+    font-size: 15px;
+  }
+}

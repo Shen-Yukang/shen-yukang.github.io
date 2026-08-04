@@ -18,12 +18,10 @@ const HeroInroductionAcdemic = () => {
       <div className="hero-text">
         <h1 className="name">Yukang Shen</h1>
         <h3>Courtesy name: Runchang (润常)</h3>
-
         <p className="hero-title">
           Graduate Research Assistant · M.S. Software Engineering, Kennesaw
           State University
         </p>
-
         <p className="hero-desc">
           <strong>Research Interest:</strong>
           <ReactMarkdown

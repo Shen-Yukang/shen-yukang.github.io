@@ -4,11 +4,13 @@ import HeroInroductionAcdemic from "@/components/UserInftroduction";
 import ResearchProjectView from "@/components/ResearchProjectView";
 import Pubication from "@/components/Publication";
 import AboutMe from "@/components/UserInftroduction/AboutMe";
+import ResearchCredo from "@/components/ResearchCredo";
 
 function App() {
   return (
     <div className="page">
       <HeroInroductionAcdemic />
+      <ResearchCredo />
       <main className="main">
         {/* ====== Section 1: About / Research Background ====== */}
         <section className="section">
