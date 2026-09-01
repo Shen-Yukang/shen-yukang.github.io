@@ -14,27 +14,6 @@ body.singularity-running .page {
   will-change: transform, opacity, filter;
 }
 
-/* The wake that passes through the restored page — motion only, no colour.
-   Deliberately translate-only and single-decay: scaling text forces glyph
-   re-rasterisation, and multiple direction changes across staggered blocks
-   read as the page convulsing rather than as one wave passing through. */
-.singularity-block.is-rippling {
-  animation: singularity-settle 0.85s cubic-bezier(0.22, 0.61, 0.36, 1)
-    calc(var(--sdist) * 0.42s) both;
-}
-
-@keyframes singularity-settle {
-  0% {
-    transform: none;
-  }
-  38% {
-    transform: translateY(-4px);
-  }
-  100% {
-    transform: none;
-  }
-}
-
 .singularity-stage {
   position: fixed;
   inset: 0;
@@ -153,10 +132,11 @@ body.singularity-running .page {
   }
 }
 
-/* ---- the wake: one soft ring, composited only ------------------------ */
+/* ---- the wake: two refraction bands, composited ---------------------- */
 
-/* Registered so the gradient stop can be animated. Without @property support
-   the ring simply stays put and fades — no layout thrash either way. */
+/* Registered so the ring radius can be animated. Both bands live in one
+   element's mask, so the whole wake costs a single backdrop layer and never
+   touches layout — resizing a backdrop-filtered box is what made this stutter. */
 @property --singularity-wave {
   syntax: "<percentage>";
   inherits: false;
@@ -168,18 +148,24 @@ body.singularity-running .page {
   inset: 0;
   opacity: 0;
   --singularity-wave: 0%;
+  /* Two bands — a bright crest and a weaker trailing swell — painted as one
+     gradient. Composited only: a backdrop-filter version of this reads better
+     but re-rasterises the whole viewport each frame, which stutters. */
   background: radial-gradient(
     circle at var(--ox) var(--oy),
-    transparent calc(var(--singularity-wave) - 7%),
-    rgba(190, 205, 230, 0.05) calc(var(--singularity-wave) - 2%),
-    rgba(214, 226, 244, 0.09) var(--singularity-wave),
-    rgba(190, 205, 230, 0.05) calc(var(--singularity-wave) + 2%),
-    transparent calc(var(--singularity-wave) + 7%)
+    transparent calc(var(--singularity-wave) - 22%),
+    rgba(184, 202, 230, 0.035) calc(var(--singularity-wave) - 15%),
+    transparent calc(var(--singularity-wave) - 8%),
+    transparent calc(var(--singularity-wave) - 6.5%),
+    rgba(198, 214, 240, 0.055) calc(var(--singularity-wave) - 2.5%),
+    rgba(226, 236, 250, 0.1) var(--singularity-wave),
+    rgba(198, 214, 240, 0.055) calc(var(--singularity-wave) + 2.5%),
+    transparent calc(var(--singularity-wave) + 6.5%)
   );
 }
 
 .singularity-stage.is-rippling .singularity-refract {
-  animation: singularity-wave 1.4s cubic-bezier(0.22, 0.64, 0.31, 1) forwards;
+  animation: singularity-wave 1.5s cubic-bezier(0.22, 0.64, 0.31, 1) forwards;
 }
 
 @keyframes singularity-wave {
@@ -187,14 +173,14 @@ body.singularity-running .page {
     --singularity-wave: 0%;
     opacity: 0;
   }
-  12% {
+  10% {
     opacity: 1;
   }
-  72% {
-    opacity: 0.85;
+  74% {
+    opacity: 0.9;
   }
   100% {
-    --singularity-wave: 96%;
+    --singularity-wave: 112%;
     opacity: 0;
   }
 }

@@ -128,7 +128,6 @@ export const runSingularity = (originX: number, originY: number) => {
   const blocks = measured.map((item) => {
     const distanceRatio = item.distance / maxDistance;
     item.element.classList.add("singularity-block");
-    item.element.style.setProperty("--sdist", distanceRatio.toFixed(3));
 
     return {
       ...item,
@@ -159,8 +158,7 @@ export const runSingularity = (originX: number, originY: number) => {
     animations.forEach((animation) => animation.cancel());
     animations = [];
     blocks.forEach(({ element }) => {
-      element.classList.remove("singularity-block", "is-rippling");
-      element.style.removeProperty("--sdist");
+      element.classList.remove("singularity-block");
     });
     stage.remove();
     document.body.classList.remove("singularity-running");
@@ -203,7 +201,6 @@ export const runSingularity = (originX: number, originY: number) => {
     stage.classList.add("is-rippling");
     animations.forEach((animation) => animation.cancel());
     animations = [];
-    blocks.forEach(({ element }) => element.classList.add("is-rippling"));
   });
 
   later(COLLAPSE_MS + VOID_MS + EXPAND_MS + RIPPLE_MS, finish);
