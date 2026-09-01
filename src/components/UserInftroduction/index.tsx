@@ -3,8 +3,9 @@ import ReactMarkdown from "react-markdown";
 
 const researchInterest = `I investigate **continual learning and memory systems for embodied agents**, focusing on how physical robots retain experience, reduce false-identity updates, and adapt under resource constraints. Related interests include multimodal perception, sim-to-real transfer, and robotic manipulation.`;
 
-// CV PDF lives in public/DataEngine; reference it through the configured base path
-const cvPdfUrl = `${import.meta.env.BASE_URL}DataEngine/Yukang%20Shen.pdf`;
+// CV PDFs live in public/DataEngine; reference them through the configured
+// base path. English is the default the header links to.
+const cvPdfUrl = `${import.meta.env.BASE_URL}DataEngine/Yukang_Shen_en.pdf`;
 
 const HeroInroductionAcdemic = () => {
   return (
