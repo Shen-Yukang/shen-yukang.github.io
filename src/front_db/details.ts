@@ -118,6 +118,13 @@ const medicalAIProject: ResearchProjectDetail = {
         alt: "Deltoid-region perception demonstration",
         caption: "Visual demonstration of the deltoid-region perception task.",
       },
+      {
+        sourceKey: "Integration_VLAs",
+        type: "video",
+        alt: "Synthetic data engine integrated into a robotic arm workflow",
+        caption:
+          "Robotic integration demonstration of the perception stack in a VLA workflow.",
+      },
     ],
   },
 

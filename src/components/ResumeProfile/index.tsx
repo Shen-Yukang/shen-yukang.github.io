@@ -1,4 +1,8 @@
 import "./index.css";
+import baiduLogo from "../../assets/logos/baidu.svg";
+import cityULogo from "../../assets/logos/cityu.svg";
+// import jdLogo from "../../assets/logos/jd.svg"; // re-enable with the JD entry below
+import senseTimeLogo from "../../assets/logos/sensetime.png";
 
 const education = [
   {
@@ -20,6 +24,8 @@ const experience = [
     organization: "City University of Hong Kong",
     role: "Research Assistant (Product Developer)",
     period: "Nov. 2024 - Jan. 2025",
+    logo: cityULogo,
+    logoFormat: "mark",
     bullets: [
       "Researched Snowflake and comparable data platforms and use cases, then aligned research on federated learning and encrypted data transactions with product requirements.",
       "Developed the cross-institutional data marketplace, including access-control and transaction-audit workflows.",
@@ -29,11 +35,29 @@ const experience = [
     organization: "SenseTime Group Limited",
     role: "Software Engineer",
     period: "Nov. 2020 - Sep. 2023",
+    logo: senseTimeLogo,
+    logoFormat: "wordmark",
     bullets: [
       "Delivered numerous internal and commercial products; several served 5,000+ users.",
       "Built recruitment and onboarding systems, a company-wide office automation portal, business intelligence platforms, interactive annual-report applications, and smart meeting-room systems across desktop, web, mobile, and integrated hardware.",
       "Mentored 5 interns; named the department's best employee of the year in 2022.",
     ],
+  },
+  // {
+  //   organization: "JD.com, Inc.",
+  //   role: "Software Engineer Intern",
+  //   period: "Jun. 2019 - Aug. 2019",
+  //   logo: jdLogo,
+  //   logoFormat: "wordmark",
+  //   bullets: [],
+  // },
+  {
+    organization: "Baidu, Inc.",
+    role: "Software Engineer Intern",
+    period: "Dec. 2018 - Mar. 2019",
+    logo: baiduLogo,
+    logoFormat: "wordmark",
+    bullets: [],
   },
 ] as const;
 
@@ -51,7 +75,8 @@ const honors = [
 
 const presentations = [
   {
-    title: "MemoryEIL: An Enhanced Memory Layer Architecture for Heterogeneous Robots",
+    title:
+      "MemoryEIL: An Enhanced Memory Layer Architecture for Heterogeneous Robots",
     venue: "KSU C-Day Computing Showcase",
     period: "Spring 2026",
   },
@@ -103,7 +128,11 @@ const skillGroups = [
 
 const ResumeProfile = () => {
   return (
-    <section className="resume-profile" aria-labelledby="resume-profile-title">
+    <section
+      id="background"
+      className="resume-profile"
+      aria-labelledby="resume-profile-title"
+    >
       <header className="resume-profile__heading">
         <p>Curriculum Vitae</p>
         <h2 id="resume-profile-title">Background</h2>
@@ -115,7 +144,10 @@ const ResumeProfile = () => {
             className="resume-profile__section"
             aria-labelledby="resume-education-title"
           >
-            <h3 id="resume-education-title" className="resume-profile__section-title">
+            <h3
+              id="resume-education-title"
+              className="resume-profile__section-title"
+            >
               <span aria-hidden="true">01</span>
               Education
             </h3>
@@ -128,7 +160,9 @@ const ResumeProfile = () => {
                 >
                   <div className="resume-profile__item-heading">
                     <h4>{item.institution}</h4>
-                    <span className="resume-profile__period">{item.period}</span>
+                    <span className="resume-profile__period">
+                      {item.period}
+                    </span>
                   </div>
                   <p>{item.degree}</p>
                   <p className="resume-profile__gpa">GPA: {item.gpa}</p>
@@ -141,24 +175,47 @@ const ResumeProfile = () => {
             className="resume-profile__section"
             aria-labelledby="resume-experience-title"
           >
-            <h3 id="resume-experience-title" className="resume-profile__section-title">
+            <h3
+              id="resume-experience-title"
+              className="resume-profile__section-title"
+            >
               <span aria-hidden="true">02</span>
               Professional Experience
             </h3>
 
             <div className="resume-profile__timeline">
               {experience.map((item) => (
-                <article className="resume-profile__role" key={item.organization}>
+                <article
+                  className="resume-profile__role"
+                  key={item.organization}
+                >
                   <div className="resume-profile__item-heading">
-                    <h4>{item.organization}</h4>
-                    <span className="resume-profile__period">{item.period}</span>
+                    <div className="resume-profile__organization">
+                      <span
+                        className={`resume-profile__logo resume-profile__logo--${item.logoFormat}`}
+                        aria-hidden="true"
+                      >
+                        <img
+                          src={item.logo}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </span>
+                      <h4>{item.organization}</h4>
+                    </div>
+                    <span className="resume-profile__period">
+                      {item.period}
+                    </span>
                   </div>
                   <p className="resume-profile__role-name">{item.role}</p>
-                  <ul className="resume-profile__bullets">
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
+                  {item.bullets.length > 0 ? (
+                    <ul className="resume-profile__bullets">
+                      {item.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </article>
               ))}
             </div>
@@ -170,7 +227,10 @@ const ResumeProfile = () => {
             className="resume-profile__section"
             aria-labelledby="resume-honors-title"
           >
-            <h3 id="resume-honors-title" className="resume-profile__section-title">
+            <h3
+              id="resume-honors-title"
+              className="resume-profile__section-title"
+            >
               <span aria-hidden="true">03</span>
               Honors
             </h3>
@@ -215,7 +275,10 @@ const ResumeProfile = () => {
             className="resume-profile__section"
             aria-labelledby="resume-skills-title"
           >
-            <h3 id="resume-skills-title" className="resume-profile__section-title">
+            <h3
+              id="resume-skills-title"
+              className="resume-profile__section-title"
+            >
               <span aria-hidden="true">05</span>
               Skills
             </h3>

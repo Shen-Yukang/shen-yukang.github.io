@@ -1,5 +1,8 @@
 // components/research/ResultsSection.tsx
-import type { ResearchProjectDetail } from "@/front_db/typing";
+import type {
+  ResearchFigure,
+  ResearchProjectDetail,
+} from "@/front_db/typing";
 import { SectionShell } from "./SectionShell";
 import {
   getImageUrlByKey,
@@ -12,8 +15,58 @@ interface ResultsSectionProps {
   project: ResearchProjectDetail;
 }
 
+function ResultFigureCard({ figure }: { figure: ResearchFigure }) {
+  const isVideo = figure.type === "video";
+
+  return (
+    <figure className="overflow-hidden rounded-2xl bg-white shadow">
+      <div className={isVideo ? "aspect-video bg-black" : "bg-slate-100"}>
+        {isVideo ? (
+          <video
+            src={getVideoUrlByKey(figure.sourceKey)}
+            controls
+            aria-label={figure.alt}
+            className="h-full w-full bg-black object-contain"
+            autoPlay
+            muted
+            playsInline
+            preload="metadata"
+          />
+        ) : isMesDiagramKey(figure.sourceKey) ? (
+          <MesDiagram sourceKey={figure.sourceKey} />
+        ) : (
+          <img
+            src={getImageUrlByKey(figure.sourceKey)}
+            alt={figure.alt}
+            className="h-auto w-full object-contain"
+          />
+        )}
+      </div>
+
+      {figure.caption ? (
+        <figcaption className="p-3 text-xs text-slate-500">
+          {figure.url ? (
+            <a
+              href={figure.url}
+              target="_blank"
+              rel="noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              {figure.caption}
+            </a>
+          ) : (
+            figure.caption
+          )}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
 export function ResultsSection({ project }: ResultsSectionProps) {
   const { figures, sectionTitle, description, comparison } = project.results;
+  const imageFigures = figures.filter((figure) => figure.type !== "video");
+  const videoFigures = figures.filter((figure) => figure.type === "video");
 
   return (
     <SectionShell title={sectionTitle} description={description}>
@@ -38,50 +91,21 @@ export function ResultsSection({ project }: ResultsSectionProps) {
         </div>
       ) : null}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {figures.map((fig) => (
-          <div
-            key={fig.sourceKey}
-            className={`rounded-2xl overflow-hidden bg-white shadow ${
-              fig.type === "video" ? "sm:col-span-2 lg:col-span-3" : ""
-            }`}
-          >
-            <div className={fig.type === "video" ? "aspect-video bg-black" : "bg-slate-100"}>
-              {fig.type === "video" ? (
-                <video
-                  src={getVideoUrlByKey(fig.sourceKey)}
-                  controls
-                  aria-label={fig.alt}
-                  className="h-full w-full bg-black"
-                  autoPlay
-                  muted
-                  playsInline
-                />
-              ) : isMesDiagramKey(fig.sourceKey) ? (
-                <MesDiagram sourceKey={fig.sourceKey} />
-              ) : (
-                <img
-                  src={getImageUrlByKey(fig.sourceKey)}
-                  alt={fig.alt}
-                  className="h-auto w-full object-contain"
-                />
-              )}
-            </div>
-            {fig.caption && (
-              <p
-                className={`text-xs text-slate-500 p-3
-                ${fig.url ? "cursor-pointer text-blue-500 hover:underline" : ""}
-                `}
-                onClick={() => {
-                  if (fig.url) window.open(fig.url, "_blank");
-                }}
-              >
-                {fig.caption}
-              </p>
-            )}
-          </div>
-        ))}
-      </div>
+      {imageFigures.length ? (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {imageFigures.map((figure) => (
+            <ResultFigureCard key={figure.sourceKey} figure={figure} />
+          ))}
+        </div>
+      ) : null}
+
+      {videoFigures.length ? (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {videoFigures.map((figure) => (
+            <ResultFigureCard key={figure.sourceKey} figure={figure} />
+          ))}
+        </div>
+      ) : null}
     </SectionShell>
   );
 }
