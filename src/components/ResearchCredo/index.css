@@ -1,8 +1,18 @@
 .research-credo {
-  max-width: 600px;
+  display: grid;
+  grid-template-columns: minmax(350px, 1.08fr) minmax(250px, 0.92fr);
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  min-height: 118px;
   margin: 12px 0 14px;
-  padding: 0 0 0 12px;
-  border-left: 1px solid #cbd5e1;
+  scroll-margin-top: 72px;
+}
+
+.research-credo-copy {
+  padding-left: 12px;
+  border-left: 1px solid var(--border-strong);
 }
 
 .research-credo-quote {
@@ -11,7 +21,7 @@
 
 .research-credo-quote p {
   margin: 0;
-  color: #334155;
+  color: var(--text-body);
   font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
   font-size: 15px;
   font-weight: 500;
@@ -22,7 +32,7 @@
 .research-credo-quote cite {
   display: block;
   margin-top: 2px;
-  color: #94a3b8;
+  color: var(--text-faint);
   font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
   font-size: 12px;
   font-style: normal;
@@ -30,20 +40,123 @@
 
 .research-credo-statement {
   margin: 6px 0 0;
-  color: #64748b;
+  color: var(--text-muted);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 12.5px;
   font-style: italic;
   line-height: 1.55;
 }
 
-@media (max-width: 640px) {
+.matter-flux {
+  position: relative;
+  min-width: 0;
+  height: 112px;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+  opacity: 0.94;
+  /* Ellipse rather than a left/right sweep, so the star field dissolves into
+     the page on every side instead of showing the canvas rectangle. */
+  -webkit-mask-image: radial-gradient(
+    ellipse 52% 62% at 50% 50%,
+    #000 42%,
+    rgba(0, 0, 0, 0.55) 72%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 52% 62% at 50% 50%,
+    #000 42%,
+    rgba(0, 0, 0, 0.55) 72%,
+    transparent 100%
+  );
+}
+
+/* A soft halo behind the hole. Kept to a single radial that dies well inside
+   the box, so the decoration never reveals its own rectangle. */
+.matter-flux::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 46% 62% at 50% 50%,
+    var(--scene-glow),
+    transparent 70%
+  );
+  content: "";
+}
+
+.matter-flux canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Sits exactly on the projected black hole, which always renders at the
+   centre of the canvas because its world position is the origin. */
+.matter-flux-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: box-shadow 0.35s ease;
+}
+
+.matter-flux-core:hover,
+.matter-flux-core:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 1px var(--gold),
+    0 0 18px var(--gold-soft);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
   .research-credo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
     margin-top: 12px;
-    padding-left: 12px;
+  }
+
+  .matter-flux {
+    height: 76px;
+    margin-top: 2px;
   }
 
   .research-credo-quote p {
     font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .matter-flux {
+    opacity: 0.78;
+  }
+}
+
+@media print {
+  .matter-flux {
+    display: none;
+  }
+
+  .research-credo {
+    display: block;
   }
 }

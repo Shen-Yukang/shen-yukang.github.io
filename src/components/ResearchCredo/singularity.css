@@ -1,0 +1,211 @@
+/* Page-wide collapse / big bang / ripple driven by singularity.ts.
+   The spiral itself is generated in JS via the Web Animations API; this file
+   owns the void, the flash and the refraction wake. */
+
+body.singularity-running {
+  overflow-x: clip;
+}
+
+body.singularity-running .page {
+  pointer-events: none;
+}
+
+.singularity-block {
+  will-change: transform, opacity, filter;
+}
+
+/* The wake that passes through the restored page — motion only, no colour.
+   Deliberately translate-only and single-decay: scaling text forces glyph
+   re-rasterisation, and multiple direction changes across staggered blocks
+   read as the page convulsing rather than as one wave passing through. */
+.singularity-block.is-rippling {
+  animation: singularity-settle 0.85s cubic-bezier(0.22, 0.61, 0.36, 1)
+    calc(var(--sdist) * 0.42s) both;
+}
+
+@keyframes singularity-settle {
+  0% {
+    transform: none;
+  }
+  38% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+.singularity-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ---- the void ------------------------------------------------------- */
+
+.singularity-veil {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    radial-gradient(
+      circle at var(--ox) var(--oy),
+      rgba(9, 12, 20, 0.9) 0%,
+      #05070c 42%,
+      #02040a 100%
+    );
+}
+
+.singularity-stage.is-charging .singularity-veil {
+  animation: singularity-darken 1.85s cubic-bezier(0.5, 0, 0.72, 0.4) forwards;
+}
+
+.singularity-stage.is-flashing .singularity-veil {
+  animation: singularity-lighten 1.1s cubic-bezier(0.3, 0, 0.4, 1) forwards;
+}
+
+@keyframes singularity-darken {
+  0% {
+    opacity: 0;
+  }
+  62% {
+    opacity: 0.72;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes singularity-lighten {
+  0% {
+    opacity: 1;
+  }
+  22% {
+    opacity: 0.82;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---- the singularity itself ----------------------------------------- */
+
+.singularity-core {
+  position: absolute;
+  top: var(--oy);
+  left: var(--ox);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 0;
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    rgba(255, 248, 230, 0.96) 24%,
+    rgba(212, 168, 74, 0.8) 45%,
+    rgba(64, 122, 178, 0.36) 68%,
+    transparent 76%
+  );
+  transform: translate(-50%, -50%) scale(0.15);
+}
+
+.singularity-stage.is-charging .singularity-core {
+  animation: singularity-charge 2s ease-in forwards;
+}
+
+.singularity-stage.is-flashing .singularity-core {
+  animation: singularity-flash 1.15s cubic-bezier(0.08, 0.75, 0.2, 1) forwards;
+}
+
+@keyframes singularity-charge {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.15);
+  }
+  55% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  84% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.7);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+@keyframes singularity-flash {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  14% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(14);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(92);
+  }
+}
+
+/* ---- the wake: one soft ring, composited only ------------------------ */
+
+/* Registered so the gradient stop can be animated. Without @property support
+   the ring simply stays put and fades — no layout thrash either way. */
+@property --singularity-wave {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+.singularity-refract {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  --singularity-wave: 0%;
+  background: radial-gradient(
+    circle at var(--ox) var(--oy),
+    transparent calc(var(--singularity-wave) - 7%),
+    rgba(190, 205, 230, 0.05) calc(var(--singularity-wave) - 2%),
+    rgba(214, 226, 244, 0.09) var(--singularity-wave),
+    rgba(190, 205, 230, 0.05) calc(var(--singularity-wave) + 2%),
+    transparent calc(var(--singularity-wave) + 7%)
+  );
+}
+
+.singularity-stage.is-rippling .singularity-refract {
+  animation: singularity-wave 1.4s cubic-bezier(0.22, 0.64, 0.31, 1) forwards;
+}
+
+@keyframes singularity-wave {
+  0% {
+    --singularity-wave: 0%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 0.85;
+  }
+  100% {
+    --singularity-wave: 96%;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .singularity-block,
+  .singularity-stage {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}

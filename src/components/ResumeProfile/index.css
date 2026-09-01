@@ -1,10 +1,11 @@
 .resume-profile {
-  --resume-ink: #172033;
-  --resume-muted: #637083;
-  --resume-rule: #d8e0e9;
-  --resume-accent: #28527a;
+  --resume-ink: var(--text-strong);
+  --resume-muted: var(--text-muted);
+  --resume-rule: var(--border);
+  --resume-accent: var(--accent);
   margin-top: 40px;
   color: var(--resume-ink);
+  scroll-margin-top: 72px;
 }
 
 .resume-profile__heading {
@@ -19,7 +20,7 @@
 .resume-profile__heading p {
   order: 2;
   margin: 0;
-  color: #8a96a6;
+  color: var(--text-muted);
   font-size: 11px;
   font-weight: 650;
   letter-spacing: 0.13em;
@@ -66,7 +67,7 @@
 }
 
 .resume-profile__section-title > span {
-  color: #9aa8b7;
+  color: var(--text-faint);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 11px;
   font-weight: 400;
@@ -76,7 +77,7 @@
 .resume-profile__education-item + .resume-profile__education-item {
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid #e7ecf1;
+  border-top: 1px solid var(--rule);
 }
 
 .resume-profile__item-heading {
@@ -105,24 +106,26 @@
 
 .resume-profile__education-item > p {
   margin: 3px 0 0;
-  color: #3f4b5d;
+  color: var(--text-body);
   font-size: 14px;
   line-height: 1.5;
 }
 
 .resume-profile__education-item > .resume-profile__gpa {
   margin-top: 5px;
-  color: #7a8797;
+  color: var(--text-muted);
   font-size: 12px;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.025em;
 }
 
 .resume-profile__timeline {
-  border-left: 1px solid #d2dce7;
+  border-left: 1px solid var(--border);
 }
 
 .resume-profile__role {
+  --resume-logo-gap: 12px;
+  --resume-logo-width: 70px;
   position: relative;
   padding-left: 18px;
 }
@@ -133,7 +136,7 @@
   left: -4px;
   width: 7px;
   height: 7px;
-  border: 2px solid #f9fafb;
+  border: 2px solid var(--bg-page);
   border-radius: 50%;
   background: var(--resume-accent);
   box-shadow: 0 0 0 1px var(--resume-accent);
@@ -144,17 +147,56 @@
   margin-top: 24px;
 }
 
+.resume-profile__role .resume-profile__item-heading {
+  align-items: start;
+}
+
+.resume-profile__organization {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: var(--resume-logo-gap);
+}
+
+.resume-profile__logo {
+  display: grid;
+  width: var(--resume-logo-width);
+  height: 44px;
+  flex: 0 0 var(--resume-logo-width);
+  place-items: center;
+  padding: 6px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.resume-profile__logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.resume-profile__logo--mark img {
+  width: 38px;
+}
+
+.resume-profile__role .resume-profile__period {
+  padding-top: 12px;
+}
+
 .resume-profile__role-name {
-  margin: 3px 0 0;
+  margin: 3px 0 0 calc(var(--resume-logo-width) + var(--resume-logo-gap));
   color: var(--resume-accent);
   font-size: 13px;
   font-weight: 650;
 }
 
 .resume-profile__bullets {
-  margin: 9px 0 0;
+  margin: 9px 0 0 calc(var(--resume-logo-width) + var(--resume-logo-gap));
   padding-left: 17px;
-  color: #445064;
+  color: var(--text-body);
   font-size: 13.5px;
   line-height: 1.58;
 }
@@ -164,7 +206,7 @@
 }
 
 .resume-profile__bullets li::marker {
-  color: #8ba0b5;
+  color: var(--text-faint);
 }
 
 .resume-profile__honors {
@@ -178,7 +220,7 @@
 .resume-profile__honors li {
   position: relative;
   padding-left: 14px;
-  color: #465266;
+  color: var(--text-body);
   font-size: 13px;
   line-height: 1.55;
 }
@@ -190,7 +232,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6f8eaa;
+  background: var(--text-faint);
   content: "";
 }
 
@@ -201,7 +243,7 @@
 
 .resume-profile__honors strong {
   margin-bottom: 2px;
-  color: #263449;
+  color: var(--text-strong);
   font-size: 13px;
   font-weight: 700;
 }
@@ -225,7 +267,7 @@
   position: absolute;
   top: 2px;
   left: 0;
-  color: #9aa8b7;
+  color: var(--text-faint);
   content: counter(presentation, decimal-leading-zero);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 10px;
@@ -233,7 +275,7 @@
 
 .resume-profile__presentations h4 {
   margin: 0;
-  color: #2c394d;
+  color: var(--text-strong);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 13.5px;
   font-weight: 500;
@@ -242,7 +284,7 @@
 
 .resume-profile__presentations p {
   margin: 4px 0 0;
-  color: #7a8797;
+  color: var(--text-muted);
   font-size: 11.5px;
   line-height: 1.45;
 }
@@ -257,7 +299,7 @@
 
 .resume-profile__skills dt {
   margin-bottom: 7px;
-  color: #36455a;
+  color: var(--text-strong);
   font-size: 12px;
   font-weight: 700;
 }
@@ -277,10 +319,10 @@
 
 .resume-profile__skills li {
   padding: 2px 7px;
-  border: 1px solid #dce4ec;
+  border: 1px solid var(--border);
   border-radius: 3px;
-  background: rgba(255, 255, 255, 0.52);
-  color: #5b6879;
+  background: var(--bg-chip);
+  color: var(--text-body);
   font-size: 10.5px;
   line-height: 1.5;
 }
@@ -326,6 +368,29 @@
 
   .resume-profile__period {
     white-space: normal;
+  }
+
+  .resume-profile__role {
+    --resume-logo-gap: 10px;
+    --resume-logo-width: 62px;
+  }
+
+  .resume-profile__logo {
+    height: 40px;
+    padding: 5px;
+  }
+
+  .resume-profile__logo--mark img {
+    width: 34px;
+  }
+
+  .resume-profile__role .resume-profile__period {
+    padding-top: 0;
+  }
+
+  .resume-profile__role-name,
+  .resume-profile__bullets {
+    margin-left: 0;
   }
 
   .resume-profile__section + .resume-profile__section {

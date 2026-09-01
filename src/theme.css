@@ -1,0 +1,136 @@
+/**
+ * Theme tokens. Dark is the default; `data-theme="light"` on <html> switches
+ * back. Every component stylesheet should reference these rather than raw
+ * colours so both themes stay in step.
+ */
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* surfaces */
+  --bg-page: #05070d;
+  --bg-raised: #0b1018;
+  --bg-sunken: #080b12;
+  --bg-chip: rgba(148, 176, 214, 0.08);
+  --bg-chip-hover: rgba(148, 176, 214, 0.14);
+  --bg-nav: rgba(11, 16, 24, 0.82);
+  --bg-highlight: rgba(212, 168, 74, 0.18);
+
+  /* text */
+  --text-strong: #eef2f8;
+  --text-body: #c3cddb;
+  --text-muted: #8b98ab;
+  --text-faint: #67728a;
+  --text-inverse: #05070d;
+
+  /* accents */
+  --accent: #6aa9e9;
+  --accent-strong: #8cc0f5;
+  --accent-soft: rgba(106, 169, 233, 0.16);
+  --gold: #d4a84a;
+  --gold-soft: rgba(212, 168, 74, 0.2);
+
+  /* lines & depth */
+  --border: rgba(148, 176, 214, 0.16);
+  --border-strong: rgba(148, 176, 214, 0.28);
+  --rule: rgba(148, 176, 214, 0.12);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.55);
+
+  /* the canvas scene reads against the page, so it gets tokens too */
+  --scene-veil: rgba(5, 7, 13, 0.55);
+  --scene-glow: rgba(120, 168, 226, 0.1);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-page: #f9fafb;
+  --bg-raised: #ffffff;
+  --bg-sunken: #f3f5f8;
+  --bg-chip: rgba(15, 23, 42, 0.05);
+  --bg-chip-hover: rgba(15, 23, 42, 0.09);
+  --bg-nav: rgba(249, 250, 251, 0.88);
+  --bg-highlight: rgba(253, 230, 138, 0.55);
+
+  --text-strong: #111827;
+  --text-body: #374151;
+  --text-muted: #6b7280;
+  --text-faint: #94a3b8;
+  --text-inverse: #ffffff;
+
+  --accent: #2563eb;
+  --accent-strong: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.1);
+  --gold: #a97f2c;
+  --gold-soft: rgba(190, 145, 51, 0.18);
+
+  --border: #e5e7eb;
+  --border-strong: #cbd5e1;
+  --rule: rgba(15, 23, 42, 0.1);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.055);
+  --shadow-lg: 0 18px 44px rgba(15, 23, 42, 0.1);
+
+  --scene-veil: rgba(255, 255, 255, 0.55);
+  --scene-glow: rgba(37, 99, 235, 0.055);
+  --scene-band: rgba(148, 163, 184, 0.08);
+}
+
+html,
+body {
+  background-color: var(--bg-page);
+  color: var(--text-body);
+}
+
+/* Theme swaps should feel like a dimmer, not a cut. */
+body {
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--bg-nav);
+  color: var(--text-muted);
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  outline: none;
+  color: var(--gold);
+  border-color: var(--gold);
+  transform: rotate(-18deg);
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media print {
+  .theme-toggle {
+    display: none;
+  }
+}

@@ -12,8 +12,10 @@
     "Segoe UI", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #111827;
-  background-color: #f9fafb;
+  /* Real values live in theme.css; :root out-specifies `html`, so these must
+     be tokens or they would pin the canvas to the light palette. */
+  color: var(--text-body);
+  background-color: var(--bg-page);
 }
 
 body {

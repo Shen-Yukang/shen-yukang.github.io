@@ -8,7 +8,22 @@
       name="description"
       content="Yukang Shen is an embodied AI researcher and software engineer studying continual learning and memory systems for physical agents."
     />
-    <meta name="theme-color" content="#f9fafb" />
+    <meta name="theme-color" content="#05070d" />
+    <script>
+      // Set the theme before first paint so a stored light choice never
+      // flashes through the dark default.
+      (function () {
+        try {
+          var stored = localStorage.getItem("cv-theme");
+          document.documentElement.setAttribute(
+            "data-theme",
+            stored === "light" ? "light" : "dark",
+          );
+        } catch (error) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      })();
+    </script>
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
