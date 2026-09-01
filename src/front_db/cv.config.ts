@@ -2,84 +2,55 @@ import type { Publication, ResearchProject } from "./typing";
 
 const researchProjects: ResearchProject[] = [
   {
-    title: "Brain-Inspired Dynamic Memory System for Embodied AI",
+    title: "Similarity Is Not Identity: Evidence-Gated Writes for Embodied Memory",
     rp_id: "1112360",
     tags: [
       {
-        text: "Brain-Inspired Dynamic Memory",
+        text: "Embodied Memory",
         color: "#DDF3E9",
         fontColor: "#174B38",
       },
       {
-        text: "VLA / TAMP Augmentation",
+        text: "Evidence-Gated Writes",
         color: "#E7F0FF",
         fontColor: "#1D4678",
       },
       {
-        text: "In Development · 90%",
+        text: "In Progress",
         color: "#16A34A",
         fontColor: "white",
       },
     ],
-    time: "2026 Spring - Present",
+    time: "2026 - Present",
     description:
-      "A brain-inspired dynamic memory system for embodied AI, designed with security and safety as first-class goals for more adaptive and reliable downstream robot decisions.",
+      "Can continuity-gated writes reduce wrong-object updates among visually similar objects?",
     bullets: [
-      "Explores brain-inspired dynamic memory for more adaptive and reliable embodied decisions.",
-      "Builds in security and safety as first-class design goals.",
-      "Currently around 90% implemented and under active development.",
+      "Modeled object identity tracking as a memory write-verification problem to reduce false updates among visually similar objects.",
+      "Developed a multi-stage filtering pipeline combining geometric constraints and visual feature similarity, enforcing strict continuity checks (e.g., uninterrupted tracking) before updating object records.",
     ],
     locked: true,
-  },
-
-  {
-    title: "Safety Benchmark for Embodied AI",
-    tags: [
-      {
-        text: "Vision–Language–Action Models",
-      },
-    ],
-    rp_id: "1112358",
-    url: "",
-    time: "",
-    description:
-      "Building a safety benchmark and safety-aware evaluation pipelines for embodied AI agents operating in medical and assistive scenarios.",
-    bullets: [
-      "Investigates how synthetic data and uncertainty signals can guide safer policy behaviors.",
-      "Connects perception quality to task-level safety constraints in injection and AR-assist settings.",
-      "Explores cross-disciplinary, physics-informed spatial perception to achieve higher geometric precision and interpretable structure understanding.",
-    ],
   },
   {
     title: "A Real-Calibrated Synthetic-First Data Engine",
     rp_id: "1112356",
     tags: [
       {
-        text: "Deltoid Injection Perception",
-        color: "",
+        text: "Independent Research",
       },
       {
-        text: "Synthetic Data Engine",
-        color: "",
+        text: "Sole-Author Preprint",
       },
       {
-        text: "HITL",
-        color: "",
-      },
-      {
-        text: "Second Place · KSU C-Day 2025 Fall",
-        color: "#f5a142",
-        fontColor: "white",
+        text: "YOLOv11-Pose",
       },
     ],
     routeUrl: "/rp/synthetic_data_engine",
-    time: "",
+    time: "2025 - 2026",
     description:
-      "Designing a synthetic-first data engine and perception pipeline for deltoid intramuscular injection, combining controlled T2I generation, CLIP-based filters, and segmentation models for safe-zone guidance.",
+      "Can synthetic data carry a vision model where labeled real data are scarce? Side-view, shoulder-exposed images are rare, creating a long-tail gap for deltoid-region segmentation.",
     bullets: [
-      "Builds a scalable data engine integrating active learning and diffusion-based generation for dataset expansion.",
-      "Evaluates synthetic → real transfer on deltoid-injection segmentation tasks.",
-      "Studies reliability metrics (AP shift, JS divergence, task success rate) for cross-domain generalization.",
+      "Developed a Python-based synthetic data engine combining diffusion-based image generation, SAM-based semantic filtering, and automated dataset packaging.",
+      "Evaluated YOLOv11-pose across 5 training configurations on a 280-image real test set, improving pose mAP@0.5:0.95 from 0.389 to 0.411 (+5.7% relative) with hybrid training.",
     ],
     media: {
       type: "video",
@@ -91,11 +62,25 @@ const researchProjects: ResearchProject[] = [
 
 const publications: Publication[] = [
   {
+    year: "2022",
+    title:
+      "6G-enabled Edge AI for Metaverse: Challenges, Methods, and Future Research Directions",
+    authors:
+      "Luyi Chang, Zhe Zhang, Pei Li, Shan Xi, Wei Guo, Yukang Shen, Zehui Xiong, Jiawen Kang, Dusit Niyato, Xiuquan Qiao, Yi Wu",
+    venue: "Journal of Communications and Information Networks.",
+    url: "https://ieeexplore.ieee.org/document/9815195",
+    media: {
+      type: "image",
+      sourceKey: "paper1",
+      alt: "JCIN journal cover",
+    },
+  },
+  {
     year: "2026",
     title: "A Real-Calibrated Synthetic-First Data Engine",
-    authors: "Yukang Shen",
-    venue: "Preprint.",
-    url: "https://arxiv.org/pdf/2605.09699",
+    authors: "Yukang Shen (sole author)",
+    venue: "Preprint, arXiv:2605.09699.",
+    url: "https://arxiv.org/abs/2605.09699",
     media: {
       type: "image",
       sourceKey: "overall_architecture_v2",
@@ -103,18 +88,12 @@ const publications: Publication[] = [
     },
   },
   {
-    year: "2022",
+    year: "",
     title:
-      "6G-enabled Edge AI for Metaverse: Challenges, Methods, and Future Research Directions",
-    authors:
-      "Luyi Chang, Zhe Zhang, Pei Li, Shan Xi, Wei Guo, Yukang Shen, Zehui Xiong, Jiawen Kang, Dusit Niyato, Xiuquan Qiao, Yi Wu",
-    venue: "Journal of Communications and Information Networks.",
-    url: "https://arxiv.org/abs/2204.06192",
-    media: {
-      type: "image",
-      sourceKey: "paper1",
-      alt: "JCIN journal cover",
-    },
+      "Job Entry Guiding Method and Device, Electronic Equipment, Storage Medium and Program Product",
+    authors: "",
+    venue: "Patent No. CN114581057.",
+    url: "https://patentscope.wipo.int/search/en/detail.jsf?docId=CN365365552",
   },
 ];
 

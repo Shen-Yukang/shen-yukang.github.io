@@ -2,91 +2,90 @@ import type { ResearchProjectDetail } from "./typing";
 
 const medicalAIProject: ResearchProjectDetail = {
   id: "1112356",
-  title: "Synthetic-First Perception and Data Engine for Medical AI",
+  title: "A Real-Calibrated Synthetic-First Data Engine",
   subtitle:
-    "Oriented research on high-precision spatial perception and data-centric pipelines for deltoid injection assistance and embodied medical intelligence.",
-  headerLabel: "Research Project",
+    "Independent, sole-author research on whether synthetic data can support vision models when labeled real data are scarce, using deltoid-region perception as a long-tail test case.",
+  headerLabel: "Independent Research · 2025-2026",
 
   summary: {
     problem:
-      "Real deltoid-injection data are scarce, biased, and expensive to label, so current perception models struggle to generalize in clinics.",
+      "Side-view, shoulder-exposed images are rare, creating a long-tail data gap for deltoid-region perception.",
     theme:
-      "We build a synthetic-first data engine that mass-produces and filters anatomically valid deltoid scenes, plus an anthropometric model for safe intramuscular injection zones.",
+      "The Python-based data engine combines diffusion-based image generation, SAM-based semantic filtering, and automated dataset packaging.",
     result:
-      "Synthetic-only models reach **≥90% real-data AP** with **MAPE ≤ 8%** and **dist% ≤ 10%**. Mixed synthetic–real training improves performance further while keeping safety zones consistent and interpretable.",
+      "Across **5 training configurations** and a **280-image real test set**, hybrid training improved YOLOv11-pose mAP@0.5:0.95 from **0.389 to 0.411 (+5.7% relative)**.",
   },
 
   background: {
-    sectionTitle: "Background & Clinical Context",
+    sectionTitle: "Background & Data Context",
     challengesTitle: "Key Questions",
-    mediaTitle: "Data Collection & Labeling Gap",
+    mediaTitle: "Long-Tail Data Gap",
     intro:
-      "Deltoid intramuscular injection is a routine yet safety-critical clinical procedure. In busy clinics, inaccurate landmarking and cognitive overload can lead to misplaced injections and potential nerve damage. At the same time, privacy constraints and limited labeled data make it difficult to train robust vision models for this task.",
+      "This work uses deltoid-region perception to study a broader data problem: whether synthetic data can carry a vision model when labeled real examples are scarce. Side-view, shoulder-exposed images form a particularly difficult long-tail case.",
     challenges: [
       {
         question:
-          "Q1 · Can a scalable Synthetic Data Engine accelerate training for rare, privacy-restricted medical perception tasks? ",
+          "Q1 · Can synthetic data carry a vision model where labeled real data are scarce?",
         answer:
-          "The deltoid region, arm posture, anatomical landmarks, and safe-zone boundaries in RGB or AR views.",
+          "The project treats rare side-view, shoulder-exposed images as a concrete long-tail test case for deltoid-region perception.",
       },
       {
         question:
-          "Q2 · Can purely synthetic images achieve segmentation performance comparable to real-image training?",
+          "Q2 · How can generated samples be filtered and packaged for repeatable training?",
         answer:
-          "Injection images are constrained by medical privacy rules, uneven lighting, limited population coverage, and expensive expert annotation.",
+          "A Python pipeline combines diffusion-based generation, SAM-based semantic filtering, and automated dataset packaging.",
       },
       {
         question:
-          "Q3 · How can we provide explainable, anatomically grounded guidance for safe intramuscular injection based on perception outputs?",
+          "Q3 · Does hybrid synthetic-real training improve performance on real images?",
         answer:
-          "Generic segmentation models lack domain-specific priors and provide no interpretable concept of safe injection zones or safety margins.",
+          "On a 280-image real test set, hybrid training raised YOLOv11-pose mAP@0.5:0.95 from 0.389 to 0.411, a 5.7% relative improvement.",
       },
     ],
     images: [
       {
         sourceKey: "bg_data_collection_issue1",
-        alt: "Clinical data collection limitations",
+        alt: "Long-tail data scarcity for deltoid-region perception",
         caption:
-          "Limited real injection data due to privacy and clinical workflow constraints.",
+          "Rare side-view, shoulder-exposed examples motivate the synthetic-first approach.",
       },
       {
         sourceKey: "bg_data_collection_issue2",
-        alt: "Lighting and pose variation",
+        alt: "Visual variation in deltoid-region images",
         caption:
-          "Inconsistent lighting, arm posture, and occlusions affect data quality.",
+          "Synthetic generation expands the range of visual conditions represented during training.",
       },
       {
         sourceKey: "bg_data_labeling_issue",
-        alt: "Annotation burden",
+        alt: "Semantic quality filtering for synthetic samples",
         caption:
-          "Expert labeling is costly and difficult to scale for medical datasets.",
+          "SAM-based semantic filtering screens generated samples before dataset packaging.",
       },
     ],
   },
 
   contributions: [
-    "A modular, scalable Synthetic Data Engine for rare medical perception tasks.",
-    "An anthropometry-based, explainable geometric framework for safe injection-zone estimation.",
-    "Dataset quality evaluation and a curated deltoid-segmentation dataset for downstream training and benchmarking.",
+    "A Python-based synthetic data engine integrating diffusion generation, SAM semantic filtering, and automated dataset packaging.",
+    "A controlled comparison of 5 training configurations evaluated on a 280-image real test set.",
+    "Evidence that hybrid training improved YOLOv11-pose mAP@0.5:0.95 from 0.389 to 0.411 (+5.7% relative).",
   ],
 
   methods: {
     sectionTitle: "Method Design & Data Engine",
     description:
-      "The system is organized as a high-efficiency data engine plus a safety-aware perception module:",
+      "The workflow connects synthetic data generation, semantic quality control, dataset packaging, and real-image evaluation:",
     steps: [
-      "Cold-start: define the task, collect a small seed set of real images, and filter out low-quality examples.",
-      "Controlled T2I synthesis: generate deltoid scenes with controlled pose, BMI, clothing, and lighting conditions.",
-      "Quality filtering: use CLIP-based scores and geometric sanity checks to discard anatomically implausible images.",
-      "Iterative segmentation training: train a YOLO-based segmentation model, periodically mixing in the limited real labels.",
-      "Safe-zone inference and AR overlay: estimate the arm axis, project anthropometric safety bands, and overlay guidance in real time.",
+      "Frame the long-tail problem around scarce side-view, shoulder-exposed deltoid images.",
+      "Generate additional training images with a diffusion-based image-generation pipeline.",
+      "Apply SAM-based semantic filtering to screen generated samples.",
+      "Package accepted samples automatically into training-ready datasets.",
+      "Evaluate YOLOv11-pose across 5 training configurations on a 280-image real test set.",
     ],
     images: [
       {
         sourceKey: "overall_architecture_v2",
-        alt: "Clinical data collection limitations",
-        caption:
-          "Limited real injection data due to privacy and clinical workflow constraints.",
+        alt: "Synthetic-first data engine workflow",
+        caption: "The end-to-end synthetic data engine and evaluation workflow.",
       },
     ],
   },
@@ -94,37 +93,30 @@ const medicalAIProject: ResearchProjectDetail = {
   results: {
     sectionTitle: "Evaluation & Key Results",
     description:
-      "We summarize core quantitative results and synthetic→real generalization.",
+      "Hybrid training improved real-test pose mAP@0.5:0.95 from 0.389 to 0.411, a 5.7% relative gain.",
     figures: [
       {
         sourceKey: "result1",
-        alt: "Performance across synthetic-only datasets",
+        alt: "Performance across synthetic-data training configurations",
         caption:
-          "Performance across synthetic-only datasets of varying sizes (50–345).",
+          "Comparison across synthetic-data training configurations.",
       },
       {
         sourceKey: "result3",
-        alt: "Gap between real-test and synthetic-test evaluation",
-        caption: "Gap between real-test and synthetic-test evaluation.",
+        alt: "Evaluation on the 280-image real test set",
+        caption: "Evaluation on the 280-image real test set.",
       },
       {
         sourceKey: "result2",
-        alt: "Performance effect of mixed synthetic-real training.",
-        caption: "Performance effect of mixed synthetic-real training.",
+        alt: "Performance effect of hybrid synthetic-real training",
+        caption:
+          "Hybrid training raised pose mAP@0.5:0.95 from 0.389 to 0.411 (+5.7% relative).",
       },
       {
         sourceKey: "perception_demo",
         type: "video",
-        alt: "Performance across synthetic-only datasets",
-        caption:
-          "This is a visual demonstration of visual perception alone(With interpretability auxiliary lines).",
-      },
-      {
-        sourceKey: "Integration_VLAs",
-        type: "video",
-        alt: "Integration into a robotic arm pipeline",
-        caption:
-          "We have integrated the perception stack into a robotic arm VLA workflow.",
+        alt: "Deltoid-region perception demonstration",
+        caption: "Visual demonstration of the deltoid-region perception task.",
       },
     ],
   },
@@ -144,7 +136,7 @@ const medicalAIProject: ResearchProjectDetail = {
   },
 
   contact: {
-    email: "yshen4@students.kennesaw.edu",
+    email: "shenyukang99@gmail.com",
   },
 };
 

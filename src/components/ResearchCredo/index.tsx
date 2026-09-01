@@ -9,7 +9,7 @@ const ResearchCredo = () => {
       </blockquote>
 
       <p className="research-credo-statement">
-        The physical world never stands still; neither should intelligence.
+        The physical world never stands still, neither should intelligence.
       </p>
     </aside>
   );

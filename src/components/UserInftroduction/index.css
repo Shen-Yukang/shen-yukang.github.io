@@ -24,13 +24,21 @@
 .name {
   font-size: 32px;
   font-weight: 700;
-  margin: 0 0 6px;
+  margin: 0 0 2px;
+  letter-spacing: -0.02em;
+}
+
+.hero-role {
+  margin: 0 0 4px;
+  color: #1e4f7b;
+  font-size: 18px;
+  font-weight: 650;
 }
 
 .hero-title {
   font-size: 15px;
-  margin: 0 0 12px;
-  color: #444;
+  margin: 0 0 10px;
+  color: #4b5563;
 }
 
 .hero-desc {
@@ -44,6 +52,9 @@
 .hero-links {
   margin-top: 6px;
   font-size: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .hero-links a {
@@ -71,5 +82,9 @@
   .hero-photo img {
     width: 130px;
     height: 165px;
+  }
+
+  .hero-role {
+    font-size: 17px;
   }
 }

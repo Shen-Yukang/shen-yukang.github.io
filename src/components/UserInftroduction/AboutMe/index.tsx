@@ -2,9 +2,9 @@
 import ReactMarkdown from "react-markdown";
 import "./index.css";
 
-const introdution = `I am a Graduate Research Assistant at Kennesaw State University, working on **Physical AI** and **continual embodied learning**. My research centers on **multimodal embodied representation learning**, **hierarchical control policies**, and **compact, brain-inspired agent architectures** that let embodied agents adapt continually from physical interaction.
+const introduction = `I am an **embodied AI researcher and software engineer** pursuing an M.S. in Software Engineering at Kennesaw State University. My research asks how physical robots can retain experience without confusing visually similar objects, and how they can keep adapting when compute and memory are limited.
 
-I am currently building a **biologically inspired memory infrastructure for Physical AI** — with modular, brain-region-like memory organization and multi-channel feature learning — to move embodied agents beyond demo-centric pipelines toward integrated perception, memory, safety, and decision-making in a single lifelong-learning architecture. In parallel, I develop **real-calibrated, synthetic-first data engines for medical perception**, with applications such as deltoid injection-site segmentation and safety-zone guidance.`;
+My current work centers on **continual learning and memory systems for embodied agents**, with related interests in multimodal perception, sim-to-real transfer, and robotic manipulation. Before focusing on research, I built enterprise products at SenseTime across web, mobile, desktop, and integrated hardware, grounding my research in production software and real-world constraints.`;
 
 const AboutMe = () => {
   return (
@@ -23,7 +23,7 @@ const AboutMe = () => {
           // ),
         }}
       >
-        {introdution}
+        {introduction}
       </ReactMarkdown>
     </>
   );

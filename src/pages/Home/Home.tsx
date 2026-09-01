@@ -5,6 +5,7 @@ import ResearchProjectView from "@/components/ResearchProjectView";
 import Pubication from "@/components/Publication";
 import AboutMe from "@/components/UserInftroduction/AboutMe";
 import ResearchCredo from "@/components/ResearchCredo";
+import ResumeProfile from "@/components/ResumeProfile";
 
 function App() {
   return (
@@ -17,21 +18,23 @@ function App() {
           <AboutMe />
         </section>
 
-        {/* ====== Section 2: Research Projects ====== */}
+        {/* ====== Section 2: Education / Experience / Skills ====== */}
+        <ResumeProfile />
+
+        {/* ====== Section 3: Research Projects ====== */}
         <section className="section">
           <ResearchProjectView researchProjects={researchProjects} />
         </section>
 
-        {/* ====== Section 3: Publications ====== */}
+        {/* ====== Section 4: Publications ====== */}
         <section className="section">
           <Pubication publications={publications} />
         </section>
       </main>
 
       <footer className="footer">
-        © {new Date().getFullYear()} Yukang Shen · Built with React & Vite
-        {/* <br />
-        Version-"{new Date().toLocaleDateString()}" */}
+        © {new Date().getFullYear()} Yukang Shen · Embodied AI Researcher &
+        Software Engineer
       </footer>
     </div>
   );

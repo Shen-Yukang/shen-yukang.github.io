@@ -51,6 +51,7 @@ export function ResultsSection({ project }: ResultsSectionProps) {
                 <video
                   src={getVideoUrlByKey(fig.sourceKey)}
                   controls
+                  aria-label={fig.alt}
                   className="h-full w-full bg-black"
                   autoPlay
                   muted
