@@ -10,7 +10,10 @@
 const COLLAPSE_MS = 1500;
 const VOID_MS = 520;
 const EXPAND_MS = 1200;
-const RIPPLE_MS = 1600;
+const RIPPLE_MS = 2300;
+/** Must match the wake's duration and end radius in singularity.css. */
+const WAVE_MS = 1500;
+const WAVE_END_PERCENT = 112;
 
 const SPIRAL_STEPS = 30;
 const SPIRAL_TURNS = 0.92;
@@ -124,10 +127,27 @@ export const runSingularity = (originX: number, originY: number) => {
     };
   });
   const maxDistance = Math.max(...measured.map((item) => item.distance)) || 1;
+  const cornerDistance =
+    Math.max(
+      Math.hypot(originX, originY),
+      Math.hypot(window.innerWidth - originX, originY),
+      Math.hypot(originX, window.innerHeight - originY),
+      Math.hypot(window.innerWidth - originX, window.innerHeight - originY),
+    ) || 1;
 
   const blocks = measured.map((item) => {
     const distanceRatio = item.distance / maxDistance;
     item.element.classList.add("singularity-block");
+    // The wake is a radial-gradient on a viewport-sized box, so its 100% stop
+    // sits at the farthest corner. Converting the block's distance into that
+    // same scale tells us when the front arrives, and the front moves at a
+    // constant speed, so the delay is a plain proportion of the duration.
+    // Blocks below the fold sit further away than any viewport corner, which
+    // would push their delay past the end of the wake; clamp so every block
+    // still swells, at the latest as the front leaves the screen.
+    const reach = Math.min(item.distance / cornerDistance, 1);
+    const arrival = reach * (100 / WAVE_END_PERCENT) * WAVE_MS;
+    item.element.style.setProperty("--swave", `${Math.round(arrival)}ms`);
 
     return {
       ...item,
@@ -158,7 +178,8 @@ export const runSingularity = (originX: number, originY: number) => {
     animations.forEach((animation) => animation.cancel());
     animations = [];
     blocks.forEach(({ element }) => {
-      element.classList.remove("singularity-block");
+      element.classList.remove("singularity-block", "is-rippling");
+      element.style.removeProperty("--swave");
     });
     stage.remove();
     document.body.classList.remove("singularity-running");
@@ -201,6 +222,7 @@ export const runSingularity = (originX: number, originY: number) => {
     stage.classList.add("is-rippling");
     animations.forEach((animation) => animation.cancel());
     animations = [];
+    blocks.forEach(({ element }) => element.classList.add("is-rippling"));
   });
 
   later(COLLAPSE_MS + VOID_MS + EXPAND_MS + RIPPLE_MS, finish);
